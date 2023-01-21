@@ -1,6 +1,13 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
+
+// Define the schema name for the Postgres production database in the options object
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -13,13 +20,13 @@ module.exports = {
 
       type: Sequelize.STRING(15),
       allowNull: false
-    })
+    }, options)
 
     await queryInterface.addColumn('Users', 'lastName', {
 
       type: Sequelize.STRING(15),
       allowNull: false
-    })
+    }, options)
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,7 +36,9 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('Users', 'firstName')
-    await queryInterface.removeColumn('Users', 'lastName')
+    options.tableName = "Users";
+
+    await queryInterface.removeColumn(options, 'Users', 'firstName')
+    await queryInterface.removeColumn(options, 'Users', 'lastName')
   }
 };
