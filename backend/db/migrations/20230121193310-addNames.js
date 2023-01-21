@@ -38,7 +38,7 @@ module.exports = {
      */
     options.tableName = "Users";
 
-    await queryInterface.removeColumn(options, 'Users', 'firstName')
-    await queryInterface.removeColumn(options, 'Users', 'lastName')
+    await queryInterface.removeColumn(options, 'firstName')
+    await queryInterface.removeColumn(options, 'lastName')
   }
 };
