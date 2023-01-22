@@ -20,7 +20,7 @@ module.exports = {
 
       type: Sequelize.STRING,
       allowNull:false
-    }, options)
+    })
   },
 
   async down (queryInterface, Sequelize) {
@@ -30,7 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    options.tableName = "Users";
-    await queryInterface.removeColumn(options,'firstName');
+    await queryInterface.removeColumn("Users",'firstName');
   }
 };
