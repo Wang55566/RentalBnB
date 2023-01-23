@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      const { id, username, email} = this; // context will be the User instance
-      return { id, username, email};
+      const { id, username, email, firstName, lastName} = this; // context will be the User instance
+      return { id, username, email, firstName, lastName};
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -63,6 +63,15 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
+      //Add columns firstName and lastName
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -78,13 +87,6 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       },
-      //Add columns firstName and lastName
-      firstName: {
-        type: DataTypes.STRING
-      },
-      lastName: {
-        type: DataTypes.STRING
-      }
     },
     {
       sequelize,
