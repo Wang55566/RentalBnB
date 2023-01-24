@@ -4,7 +4,8 @@
 // Define the schema name for the Postgres production database in the options object
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+  // define schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 module.exports = {
