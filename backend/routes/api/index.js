@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js');
 //spot
+const usersRouter = require('./users.js');
 const spotsRouter = require('./spots.js');
 const { restoreUser, requireAuth } = require("../../utils/auth.js");
 
@@ -11,12 +11,12 @@ const { restoreUser, requireAuth } = require("../../utils/auth.js");
 // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-// //spot
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
+//spot
 router.use('/spots', spotsRouter);
 
-router.use('/session', sessionRouter);
 
-router.use('/users', usersRouter);
 
 
 //Test
