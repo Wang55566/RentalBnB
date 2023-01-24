@@ -16,7 +16,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     options.tableName = 'Spots'
-    await queryInterface.addColumn(options, 'OwnerId', {
+    await queryInterface.addColumn(options, 'ownerId', {
 
       type: Sequelize.INTEGER,
       references: {model: 'Users'},
