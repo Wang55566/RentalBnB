@@ -1,6 +1,7 @@
 const express = require('express');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { Spot, User }= require('../../db/models')
+const { Spot, User, SpotImage }= require('../../db/models');
+const { json } = require('sequelize');
 const router = express.Router();
 
 // Get All Spots
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
 })
 
 // Creat A Spot
-router.post('/', requireAuth, restoreUser, async (req, res) => {
+router.post('/', restoreUser, requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body
   const {user} = req;
   console.log(user.dataValues.id)
@@ -32,18 +33,29 @@ router.post('/', requireAuth, restoreUser, async (req, res) => {
   res.json(spot)
 })
 
-//Get all Spots owned by the Current User
+// Get all Spots owned by the Current User
 router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
   const { user } = req;
-  if (user) {
-  const spots = Spot.findAll({
+
+  const spots = await Spot.findAll({
     where: {
       ownerId: user.dataValues.id
-      }
-    })
+    }
+  })
     res.json(spots);
-  }
+})
+
+// Create an Image for a Spot
+router.post('/:spotId/images', restoreUser, requireAuth, async (req, res) => {
+
+  const { url, preview } = req.body;
+  const image = await SpotImage.create({
+    url,
+    preview,
+    spotId: req.params.spotId
+  })
+  res.json(image);
 })
 
 module.exports = router;
