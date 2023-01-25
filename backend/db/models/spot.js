@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'spotId',
         onDelete: 'CASCADE'
       });
+      Spot.hasMany(models.Review, {
+        foreignKey: 'spotId',
+        onDelete: 'CASCADE'
+      });
+
     }
   }
   Spot.init({
@@ -52,6 +57,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    }
   });
   return Spot;
 };
