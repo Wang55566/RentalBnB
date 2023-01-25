@@ -6,6 +6,9 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
+// const {Spot} = require('./db/models');
+
+
 // Catching Sequelize errors
 const { ValidationError } = require('sequelize');
 
@@ -30,6 +33,10 @@ if (!isProduction) {
   // enable cors only in development
   app.use(cors());
 }
+// app.get('/api/spots', async (req, res) => {
+//   const spot = await Spot.findAll();
+//   res.json(spot);
+// })
 
 // helmet helps set a variety of headers to better secure your app
 app.use(
