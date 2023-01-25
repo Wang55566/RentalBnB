@@ -4,40 +4,51 @@
 // Define the schema name for the Postgres production database in the options object
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  // define schema in options object
   options.schema = process.env.SCHEMA;
 }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable('Spots', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING(15),
-        allowNull: false
+      address: {
+        type: Sequelize.STRING,
+        allowNullL:false
       },
-      lastName: {
-        type: Sequelize.STRING(15),
-        allowNull: false
+      city: {
+        type: Sequelize.STRING,
+        allowNullL:false
       },
-      username: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-        unique: true
+      state: {
+        type: Sequelize.STRING,
+        allowNullL:false
       },
-      email: {
-        type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true
+      country: {
+        type: Sequelize.STRING,
+        allowNullL:false
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
+      lat: {
+        type: Sequelize.DECIMAL,
+        allowNullL:false
+      },
+      lng: {
+        type: Sequelize.DECIMAL,
+        allowNullL:false
+      },
+      name: {
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
+      price: {
+        type: Sequelize.DECIMAL,
+        allowNullL:false
       },
       createdAt: {
         allowNull: false,
@@ -48,11 +59,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
+      }
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Spots";
     await queryInterface.dropTable(options);
   }
 };
