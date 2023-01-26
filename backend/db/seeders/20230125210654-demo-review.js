@@ -29,6 +29,18 @@ module.exports = {
           stars: 3,
           spotId: 1,
           userId: 3
+        },
+        {
+          review: "review4",
+          stars: 3,
+          spotId: 5,
+          userId: 4
+        },
+        {
+          review: "review5",
+          stars: 3,
+          spotId: 3,
+          userId: 1
         }
       ], {});
     },
