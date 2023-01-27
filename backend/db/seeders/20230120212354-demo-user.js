@@ -12,25 +12,39 @@ up: async (queryInterface, Sequelize) => {
   options.tableName = 'Users';
   return queryInterface.bulkInsert(options, [
       {
-        email: 'demo@user.io',
-        username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password'),
+        email: 'userOne@gmail.com',
+        username: 'FakeUser1',
+        hashedPassword: bcrypt.hashSync('password1'),
         firstName: 'SHohei',
         lastName:'Ohtani'
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
+        email: 'userTwo@gmail.com',
+        username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password2'),
         firstName: 'Mike',
         lastName:'Trout'
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
+        email: 'userThree@gmail.com',
+        username: 'FakeUser3',
         hashedPassword: bcrypt.hashSync('password3'),
-        firstName: 'Jo',
-        lastName:'Adell'
+        firstName: 'James',
+        lastName:'Harden'
+      },
+      {
+        email: 'userFour@gmail.com',
+        username: 'FakeUser4',
+        hashedPassword: bcrypt.hashSync('password4'),
+        firstName: 'Chris',
+        lastName:'Paul'
+      },
+      {
+        email: 'userFive@gmail.com',
+        username: 'FakeUser5',
+        hashedPassword: bcrypt.hashSync('password5'),
+        firstName: 'Bryce',
+        lastName:'Harper'
       }
     ], {});
   },

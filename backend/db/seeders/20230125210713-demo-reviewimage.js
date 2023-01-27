@@ -10,38 +10,33 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    options.tableName = 'SpotImages';
+    options.tableName = 'ReviewImages';
     return queryInterface.bulkInsert(options, [
         {
-          url: "spotimage1.com",
-          preview: true,
-          spotId: 3
+          url: "reviewimage1.com",
+          reviewId: 2
         },
         {
-          url: "spotimage2.com",
-          preview: true,
-          spotId: 2
+          url: "reviewimage2.com",
+          reviewId: 3
         },
         {
-          url: "spotimage3.com",
-          preview: false,
-          spotId: 1
+          url: "reviewimage3.com",
+          reviewId: 1
         },
         {
-          url: "spotimage4.com",
-          preview: false,
-          spotId: 2
+          url: "reviewimage4.com",
+          reviewId: 5
         },
         {
-          url: "spotimage5.com",
-          preview: true,
-          spotId: 5
+          url: "reviewimage5.com",
+          reviewId: 5
         }
       ], {});
     },
 
     down: async (queryInterface, Sequelize) => {
-      options.tableName = 'SpotImages';
+      options.tableName = 'ReviewImages';
       return queryInterface.bulkDelete(options);
     }
   };
