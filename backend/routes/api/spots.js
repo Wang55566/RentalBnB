@@ -453,7 +453,7 @@ router.get('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
     }
   })
 
-  if(!bookings) {
+  if(bookings.length < 1) {
     const err = new Error("Bookings on this spot couldn't be found")
     err.status = 404
     throw err;
