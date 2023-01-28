@@ -24,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
-    UserId: {
+    userId: {
       type:DataTypes.INTEGER,
     },
-    SpotId: {
+    spotId: {
       type: DataTypes.INTEGER,
     }
 }, {
