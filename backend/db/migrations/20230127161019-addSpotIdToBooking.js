@@ -20,7 +20,6 @@ module.exports = {
     await queryInterface.addColumn(options, 'spotId', {
       type: Sequelize.INTEGER,
       references: {model: 'Spots'},
-      allowNull:false,
       onDelete: 'CASCADE'
     })
   },

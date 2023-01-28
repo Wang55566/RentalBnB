@@ -431,7 +431,7 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
         throw err;
     }
   }
-
+  console.log(user.dataValues.id)
   // Finally Create a Booking
   const booking = await Booking.create ({
     userId: user.dataValues.id,
@@ -496,7 +496,7 @@ router.delete('/:spotId', restoreUser, requireAuth, async (req, res) => {
     err.status = 404
     throw err;
   }
-  
+
   if(user.dataValues.id !== spot.ownerId) {
     const err = new Error("Forbidden")
     err.status = 403

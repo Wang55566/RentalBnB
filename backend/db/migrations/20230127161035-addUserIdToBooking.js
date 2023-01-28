@@ -20,7 +20,6 @@ module.exports = {
     await queryInterface.addColumn(options, 'userId', {
       type: Sequelize.INTEGER,
       references: {model: 'Users'},
-      allowNull:false,
       onDelete: 'CASCADE'
     })
   },
