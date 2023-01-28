@@ -212,14 +212,14 @@ router.get('/:spotId', async (req, res) => {
     ]
   })
 
-  const avgRating = await Review.findAll({
+  // Find Reviews with the spotId
+  const reviews = await Review.findAll({
     where: {
       spotId: req.params.spotId
     },
-    attributes: {
-      include: [ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'] ]
-    }
   })
+
+  // include: [ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'] ]
 
   // Error response: Couldn't find a Spot with the specified id
   if(!spot) {
@@ -227,6 +227,7 @@ router.get('/:spotId', async (req, res) => {
     err.status = 404;
     throw err
   }
+
   // numReviews
   const reivewCount = await Review.count({
     where: {
@@ -234,15 +235,17 @@ router.get('/:spotId', async (req, res) => {
     }
   })
 
+  // Calculate sum in order to get avg
+  let sum = 0;
+  for(let review of reviews) {
+    sum += review.dataValues.stars;
+  }
   // POJO manipulation
   const spotObj = spot.toJSON();
-
   spotObj.numReviews = reivewCount;
-  if(avgRating[0].dataValues.avgStarRating) {
-    spotObj.avgStarRating = avgRating[0].dataValues.avgStarRating;
-  } else {
-    spotObj.avgStarRating = 0;
-  }
+  
+  if(reviews.length === 0) spotObj.avgStarRating = 0;
+  else spotObj.avgStarRating = (sum / reviews.length).toFixed(1);
 
   res.json(spotObj);
 })
