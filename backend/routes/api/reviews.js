@@ -78,7 +78,7 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async (req, res) => {
   // Create and return a new image for a review specified by id.
   const reviewImage = await ReviewImage.create({
     url,
-    reviewId: req.params.reviewId
+    reviewId: +req.params.reviewId
   })
 
   res.json(reviewImage)
@@ -106,11 +106,18 @@ router.put('/:reviewId', restoreUser, requireAuth, async (req, res) => {
   }
 
   // Error Response: Body Validation Errors
-  if(review.length < 1 || stars < 1 || stars > 5) {
+  if(!review || review.length < 1) {
     const err = new Error("Validation error");
     err.errors = {
-      "review": "Review text is required",
-      "stars": "Stars must be an integer from 1 to 5"
+      review: "Review text is required"
+    }
+    err.status = 400;
+    throw err
+  }
+  if(stars < 1 || stars > 5) {
+    const err = new Error("Validation error");
+    err.errors = {
+      stars: "Stars must be an integer from 1 to 5"
     }
     err.status = 400;
     throw err;
@@ -122,6 +129,41 @@ router.put('/:reviewId', restoreUser, requireAuth, async (req, res) => {
 
   res.json(currentReview);
 })
+
+router.delete('/:reviewId', restoreUser, requireAuth, async (req, res) => {
+
+  const { user } = req;
+
+  //Look for the review
+  const review = await Review.findOne({
+    where: {
+      id: req.params.reviewId
+    }
+  })
+
+  // Review does not exist
+  if(!review) {
+    const err = new Error("Review couldn't be found");
+    err.status = 404;
+    throw err;
+  }
+
+  // Request: endpoints that require proper authorization
+  if(review.userId !== user.dataValues.id) {
+    const err = new Error("Forbidden");
+    err.status = 403;
+    throw err;
+  }
+
+  // Finally Delete the review
+  await review.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200
+  })
+})
+
+
 
 // Error Handler
 router.use((err, req, res, next) => {
