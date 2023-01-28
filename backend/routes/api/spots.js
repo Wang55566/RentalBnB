@@ -7,6 +7,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const {sequelize } = require('../../db/models');
 const { Op } = require("sequelize");
+const e = require('express');
 
 const router = express.Router();
 
@@ -475,11 +476,13 @@ router.get('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
     })
   } else {
     const arr = [];
-    arr.push({
-      spotId : bookings[0].dataValues.spotId,
-      startDate: bookings[0].dataValues.startDate,
-      endDate: bookings[0].dataValues.endDate
-    })
+    for(let el of bookings) {
+      arr.push({
+        spotId : el.dataValues.spotId,
+        startDate: el.dataValues.startDate,
+        endDate: el.dataValues.endDate
+      })
+    }
     res.json({
       Bookings: arr
     })
