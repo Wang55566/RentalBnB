@@ -204,7 +204,7 @@ router.get('/:spotId', async (req, res) => {
   // Looking for the spot by spotId
   const spot = await Spot.findByPk(req.params.spotId,{
       include: [
-      { model: Review, attributes: [ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'] ]},
+      { model: Review, attributes: [ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'], 'spotId' ]},
       { model: User, as: 'Owner', attributes: ['id' ,'firstName', 'lastName' ] },
       { model: SpotImage, attributes: ['id', 'url', 'preview'] }
     ]
@@ -225,6 +225,8 @@ router.get('/:spotId', async (req, res) => {
 
   // POJO manipulation
   const spotObj = spot.toJSON();
+
+  console.log(spotObj)
 
   spotObj.numReviews = reivewCount;
   if(spotObj.Reviews.length > 0) {
