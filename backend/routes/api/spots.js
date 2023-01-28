@@ -243,7 +243,7 @@ router.get('/:spotId', async (req, res) => {
   // POJO manipulation
   const spotObj = spot.toJSON();
   spotObj.numReviews = reivewCount;
-  
+
   if(reviews.length === 0) spotObj.avgStarRating = 0;
   else spotObj.avgStarRating = (sum / reviews.length).toFixed(1);
 
@@ -483,6 +483,31 @@ router.get('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
       Bookings: arr
     })
   }
+})
+
+// Deletes an existing spot
+router.delete('/:spotId', restoreUser, requireAuth, async (req, res) => {
+
+  const { user } = req;
+  const spot = await Spot.findByPk(req.params.spotId);
+
+  if(!spot) {
+    const err = new Error("Spot couldn't be found")
+    err.status = 404
+    throw err;
+  }
+  
+  if(user.dataValues.id !== spot.ownerId) {
+    const err = new Error("Forbidden")
+    err.status = 403
+    throw err;
+  }
+
+  await spot.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200
+  })
 })
 
 // Error Handler
