@@ -400,15 +400,15 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
   }
 
   // Error response: No booking for the past
-  if(start <= currentDate) {
-    const err = new Error("Start date cannot be in the past")
-    err.status = 403,
-    err.errors = {
-      startDate: "Start date conflicts with an existing booking",
-      endDate: "End date conflicts with an existing booking"
-    }
-    throw err;
-  }
+  // if(start <= currentDate) {
+  //   const err = new Error("Start date cannot be in the past")
+  //   err.status = 403,
+  //   err.errors = {
+  //     startDate: "Start date conflicts with an existing booking",
+  //     endDate: "End date conflicts with an existing booking"
+  //   }
+  //   throw err;
+  // }
 
   // Error response: Booking conflict
   const spotObj = spot.toJSON();
