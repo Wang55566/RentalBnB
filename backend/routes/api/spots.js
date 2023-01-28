@@ -202,12 +202,23 @@ router.get('/:spotId', async (req, res) => {
 
 
   // Looking for the spot by spotId
-  const spot = await Spot.findByPk(req.params.spotId,{
+  const spot = await Spot.findOne({
+      where: {
+        id:req.params.spotId
+      },
       include: [
-      { model: Review, attributes: { include:[ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'] ] }   },
       { model: User, as: 'Owner', attributes: ['id' ,'firstName', 'lastName' ] },
       { model: SpotImage, attributes: ['id', 'url', 'preview'] }
     ]
+  })
+
+  const avgRating = await Review.findAll({
+    where: {
+      spotId: req.params.spotId
+    },
+    attributes: {
+      include: [ [sequelize.fn('avg', sequelize.col('stars')),'avgStarRating'] ]
+    }
   })
 
   // Error response: Couldn't find a Spot with the specified id
@@ -226,16 +237,12 @@ router.get('/:spotId', async (req, res) => {
   // POJO manipulation
   const spotObj = spot.toJSON();
 
-  console.log(spotObj)
-
   spotObj.numReviews = reivewCount;
-  if(spotObj.Reviews.length > 0) {
-    spotObj.avgStarRating = spotObj.Reviews[0].avgStarRating;
+  if(avgRating[0].dataValues.avgStarRating) {
+    spotObj.avgStarRating = avgRating[0].dataValues.avgStarRating;
   } else {
     spotObj.avgStarRating = 0;
   }
-
-  delete spotObj.Reviews;
 
   res.json(spotObj);
 })
@@ -401,7 +408,7 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
 
   // Error response: Booking conflict
   const spotObj = spot.toJSON();
-  console.log(spotObj);
+
   for(let el of spotObj.Bookings) {
     const bookingStartDate = Date.parse(el.startDate);
     const bookingEndDate = Date.parse(el.endDate);
