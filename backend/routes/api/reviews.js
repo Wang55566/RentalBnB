@@ -78,7 +78,7 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async (req, res) => {
   // Create and return a new image for a review specified by id.
   const reviewImage = await ReviewImage.create({
     url,
-    reviewId: req.params.reviewId
+    reviewId: +req.params.reviewId
   })
 
   res.json(reviewImage)

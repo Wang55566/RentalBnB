@@ -181,7 +181,7 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res) => {
     const image = await SpotImage.create({
       url,
       preview,
-      spotId: req.params.spotId
+      spotId: +req.params.spotId
     })
 
     res.json({
@@ -358,7 +358,7 @@ router.post('/:spotId/reviews', restoreUser, requireAuth, async (req, res) => {
   const reviewQuery = await Review.create({
     review,
     stars,
-    spotId: req.params.spotId,
+    spotId: +req.params.spotId,
     userId: user.dataValues.id
   })
 
@@ -431,11 +431,12 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
         throw err;
     }
   }
-  console.log(user.dataValues.id)
+
+
   // Finally Create a Booking
   const booking = await Booking.create ({
     userId: user.dataValues.id,
-    spotId: req.params.spotId,
+    spotId: +req.params.spotId,
     startDate,
     endDate
   })
