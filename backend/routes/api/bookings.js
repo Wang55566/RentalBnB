@@ -23,7 +23,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
       include: [{ model: SpotImage }] }
     ],
     where: {
-      userid: user.dataValues.id
+      userId: user.dataValues.id
     }
   });
 
