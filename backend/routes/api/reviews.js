@@ -12,7 +12,8 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     include: [
       { model: User, attributes: ['id', 'firstName', 'lastName'] },
       { model: Spot,
-        include: [{ model: SpotImage }]
+        include: [{ model: SpotImage }],
+        attributes: { exclude: ['description', 'createdAt', 'updatedAt'] }
       },
       { model: ReviewImage, attributes: ['id', 'url'] },
     ],
@@ -81,7 +82,10 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async (req, res) => {
     reviewId: +req.params.reviewId
   })
 
-  res.json(reviewImage)
+  res.json({
+    id: reviewImage.id,
+    url: reviewImage.url
+  })
 })
 
 // Edit a Review
@@ -114,7 +118,7 @@ router.put('/:reviewId', restoreUser, requireAuth, async (req, res) => {
     err.status = 400;
     throw err
   }
-  if(stars < 1 || stars > 5) {
+  if(!stars || stars < 1 || stars > 5) {
     const err = new Error("Validation error");
     err.errors = {
       stars: "Stars must be an integer from 1 to 5"

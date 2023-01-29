@@ -10,7 +10,7 @@ const { Op } = require("sequelize");
 
 const router = express.Router();
 
-router.delete('/:imageId', async (req, res) => {
+router.delete('/:imageId', restoreUser, requireAuth, async (req, res) => {
 
   const { user } = req;
 

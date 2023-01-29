@@ -48,7 +48,9 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     delete el.Spot.SpotImages;
   }
 
-  res.json(bookingsArr);
+  res.json({
+    Bookings: bookingsArr
+  });
 })
 
 // Delete an existing booking

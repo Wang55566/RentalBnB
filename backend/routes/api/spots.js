@@ -71,9 +71,11 @@ const validateCreateASpot = [
     .withMessage("Name must be less than 50 characters"),
   check("lat")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Latitude is not valid"),
   check("lng")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Longitude is not valid"),
   check("description")
     .exists({ checkFalsy: true })
@@ -81,6 +83,7 @@ const validateCreateASpot = [
     .withMessage("Description is required"),
   check("price")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Price per day is required"),
   handleValidationErrors
 ];
@@ -329,6 +332,17 @@ router.post('/:spotId/reviews', restoreUser, requireAuth, async (req, res) => {
     throw err
   }
 
+  // If review or stars don't exist
+  if(!review || !stars) {
+    const err = new Error("Validation error");
+    err.errors = {
+      "review": "Review text is required",
+      "stars": "Stars are required"
+    }
+    err.status = 400;
+    throw err;
+  }
+
   // Error Response: Body Validation Errors
   if(review.length < 1 || stars < 1 || stars > 5) {
     const err = new Error("Validation error");
@@ -386,6 +400,13 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
   if(!spot) {
     const err = new Error("Spot couldn't be found");
     err.status = 404;
+    throw err;
+  }
+
+  // Spot must NOT belong to the current user
+  if(spot.ownerId === user.dataValues.id) {
+    const err = new Error("Spot's owner cannot book their own spot");
+    err.status = 400;
     throw err;
   }
 
