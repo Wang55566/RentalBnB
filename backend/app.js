@@ -6,7 +6,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
-// const {Spot} = require('./db/models');
+const {Spot} = require('./db/models');
 
 
 // Catching Sequelize errors

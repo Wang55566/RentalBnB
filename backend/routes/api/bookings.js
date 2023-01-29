@@ -186,15 +186,15 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
 // })
 
-// // Error Handler
-// router.use((err, req, res, next) => {
-//   res.status(err.status || 500);
-//   res.json({
-//     message: err.message,
-//     statusCode: err.status,
-//     errors: err.errors
-//   })
-// })
+// Error Handler
+router.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    message: err.message,
+    statusCode: err.status,
+    errors: err.errors
+  })
+})
 
 
 module.exports = router;
