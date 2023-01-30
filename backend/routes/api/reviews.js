@@ -29,12 +29,20 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
   })
 
   reviewsArr.forEach(review => {
-    if(review.Spot.SpotImages[0] && review.Spot.SpotImages[0].preview) {
-      review.Spot.previewImage = review.Spot.SpotImages[0].url
-    } else {
-      review.Spot.previewImage = 'No preview in this spot'
+
+    if(review.Spot.SpotImages.length > 1) {
+      for(let i = 0; i < review.Spot.SpotImages.length; i++) {
+        if(review.Spot.SpotImages[i].preview) {
+          review.Spot.previewImage = review.Spot.SpotImages[i].url;
+        }
+      }
     }
+    if(!review.Spot.previewImage) {
+      review.Spot.previewImage = 'Preview is not available'
+    }
+
     delete review.Spot.SpotImages;
+
   })
 
   res.json({Reviews: reviewsArr});

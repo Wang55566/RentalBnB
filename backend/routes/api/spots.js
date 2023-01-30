@@ -65,19 +65,25 @@ router.get('/', async (req, res) => {
     delete spot.Reviews;
 
     // previewImage
-    if(spot.SpotImages[0] && spot.SpotImages[0].preview) {
-      spot.previewImage = spot.SpotImages[0].url
-    } else {
-      spot.previewImage = 'No preview in this spot'
+    if(spot.SpotImages.length > 0) {
+      for(let i=0; i<spot.SpotImages.length;i++){
+        if(spot.SpotImages[i].preview) {
+          spot.previewImage = spot.SpotImages[i].url;
+        }
+      }
     }
+    if(!spot.previewImage) {
+      spot.previewImage = 'Preview is not available'
+    }
+
     delete spot.SpotImages;
   })
 
-  res.json({
-    Spots: spotsArr,
-    page: page,
-    size: size
-  });
+    res.json({
+      Spots: spotsArr,
+      page: page,
+      size: size
+    });
 })
 
 // Middleware for Create A Spot
@@ -175,11 +181,17 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     delete spot.Reviews;
 
     // previewImage
-    if(spot.SpotImages[0] && spot.SpotImages[0].preview) {
-      spot.previewImage = spot.SpotImages[0].url
-    } else {
-      spot.previewImage = 'No preview in this spot'
+    if(spot.SpotImages.length > 0) {
+      for(let i=0; i<spot.SpotImages.length;i++){
+        if(spot.SpotImages[i].preview) {
+          spot.previewImage = spot.SpotImages[i].url;
+        }
+      }
     }
+    if(!spot.previewImage) {
+      spot.previewImage = 'Preview is not available'
+    }
+
     delete spot.SpotImages;
   })
 
