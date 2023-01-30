@@ -13,12 +13,37 @@ const router = express.Router();
 
 // Get All Spots
 router.get('/', async (req, res) => {
+
+  // Size/Page
+  let { page,size } = req.query;
+  if (!size || isNaN(size)) size = 20;
+  if (!page || isNaN(page)) page = 1;
+
+  size = parseInt(size);
+  page = parseInt(page);
+
+  if(page < 1 || page > 20) {
+    const err = new Error("Page must be between 1 and 20")
+    err.status = 400
+    throw err;
+  }
+
+  if(size < 1 || size > 20) {
+    const err = new Error("Size must be between 1 and 20")
+    err.status = 400
+    throw err;
+  }
+
+
+  //Get all Spots
   const spots = await Spot.findAll({
     include: [
       {model: SpotImage},
       // avgRating
       {model: Review}
     ],
+    limit: size,
+    offset: size * (page - 1)
   });
 
   const spotsArr = [];
@@ -40,15 +65,25 @@ router.get('/', async (req, res) => {
     delete spot.Reviews;
 
     // previewImage
-    if(spot.SpotImages[0] && spot.SpotImages[0].preview) {
-      spot.previewImage = spot.SpotImages[0].url
-    } else {
-      spot.previewImage = 'No preview in this spot'
+    if(spot.SpotImages.length > 0) {
+      for(let i=0; i<spot.SpotImages.length;i++){
+        if(spot.SpotImages[i].preview) {
+          spot.previewImage = spot.SpotImages[i].url;
+        }
+      }
     }
+    if(!spot.previewImage) {
+      spot.previewImage = 'Preview is not available'
+    }
+
     delete spot.SpotImages;
   })
 
-  res.json( {Spots:spotsArr} );
+    res.json({
+      Spots: spotsArr,
+      page: page,
+      size: size
+    });
 })
 
 // Middleware for Create A Spot
@@ -71,9 +106,11 @@ const validateCreateASpot = [
     .withMessage("Name must be less than 50 characters"),
   check("lat")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Latitude is not valid"),
   check("lng")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Longitude is not valid"),
   check("description")
     .exists({ checkFalsy: true })
@@ -81,6 +118,7 @@ const validateCreateASpot = [
     .withMessage("Description is required"),
   check("price")
     .exists({ checkFalsy: true })
+    .isNumeric({ checkFalsy: true })
     .withMessage("Price per day is required"),
   handleValidationErrors
 ];
@@ -143,15 +181,21 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     delete spot.Reviews;
 
     // previewImage
-    if(spot.SpotImages[0] && spot.SpotImages[0].preview) {
-      spot.previewImage = spot.SpotImages[0].url
-    } else {
-      spot.previewImage = 'No preview in this spot'
+    if(spot.SpotImages.length > 0) {
+      for(let i=0; i<spot.SpotImages.length;i++){
+        if(spot.SpotImages[i].preview) {
+          spot.previewImage = spot.SpotImages[i].url;
+        }
+      }
     }
+    if(!spot.previewImage) {
+      spot.previewImage = 'Preview is not available'
+    }
+
     delete spot.SpotImages;
   })
 
-  res.json( {Spots:spotsArr} );
+  res.json({Spots: spotsArr});
 })
 
 // Create an Image for a Spot
@@ -329,6 +373,17 @@ router.post('/:spotId/reviews', restoreUser, requireAuth, async (req, res) => {
     throw err
   }
 
+  // If review or stars don't exist
+  if(!review || !stars) {
+    const err = new Error("Validation error");
+    err.errors = {
+      "review": "Review text is required",
+      "stars": "Stars are required"
+    }
+    err.status = 400;
+    throw err;
+  }
+
   // Error Response: Body Validation Errors
   if(review.length < 1 || stars < 1 || stars > 5) {
     const err = new Error("Validation error");
@@ -386,6 +441,13 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
   if(!spot) {
     const err = new Error("Spot couldn't be found");
     err.status = 404;
+    throw err;
+  }
+
+  // Spot must NOT belong to the current user
+  if(spot.ownerId === user.dataValues.id) {
+    const err = new Error("Spot's owner cannot book their own spot");
+    err.status = 400;
     throw err;
   }
 
