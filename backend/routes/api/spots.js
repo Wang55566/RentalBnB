@@ -13,12 +13,37 @@ const router = express.Router();
 
 // Get All Spots
 router.get('/', async (req, res) => {
+
+  // Size/Page
+  let { page,size } = req.query;
+  if (!size || isNaN(size)) size = 20;
+  if (!page || isNaN(page)) page = 1;
+
+  size = parseInt(size);
+  page = parseInt(page);
+
+  if(page < 1 || page > 20) {
+    const err = new Error("Page must be between 1 and 20")
+    err.status = 400
+    throw err;
+  }
+
+  if(size < 1 || size > 20) {
+    const err = new Error("Size must be between 1 and 20")
+    err.status = 400
+    throw err;
+  }
+
+
+  //Get all Spots
   const spots = await Spot.findAll({
     include: [
       {model: SpotImage},
       // avgRating
       {model: Review}
     ],
+    limit: size,
+    offset: size * (page - 1)
   });
 
   const spotsArr = [];
@@ -48,7 +73,11 @@ router.get('/', async (req, res) => {
     delete spot.SpotImages;
   })
 
-  res.json( {Spots:spotsArr} );
+  res.json({
+    Spots: spotsArr,
+    page: page,
+    size: size
+  });
 })
 
 // Middleware for Create A Spot
@@ -154,7 +183,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     delete spot.SpotImages;
   })
 
-  res.json( {Spots:spotsArr} );
+  res.json({Spots: spotsArr});
 })
 
 // Create an Image for a Spot
