@@ -30,7 +30,8 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
   reviewsArr.forEach(review => {
 
-    if(review.Spot.SpotImages.length > 1) {
+    console.log(review)
+    if(review.Spot.SpotImages.length > 0) {
       for(let i = 0; i < review.Spot.SpotImages.length; i++) {
         if(review.Spot.SpotImages[i].preview) {
           review.Spot.previewImage = review.Spot.SpotImages[i].url;

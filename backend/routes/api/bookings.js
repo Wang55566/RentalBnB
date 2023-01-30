@@ -34,7 +34,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
   })
 
   for(let el of bookingsArr) {
-    if(el.Spot.SpotImages.length > 1) {
+    if(el.Spot.SpotImages.length > 0) {
       for(let i = 0; i < el.Spot.SpotImages.length; i++) {
         if(el.Spot.SpotImages[i].preview) {
           el.Spot.previewImage = el.Spot.SpotImages[i].url;
