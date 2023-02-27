@@ -14,7 +14,7 @@ const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Invalid email'),
+    .withMessage('Please provide a valid email.'),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
@@ -31,11 +31,11 @@ const validateSignup = [
   check('firstName')
     .exists({ checkFalsy: true })
     .isLength({ min: 2 })
-    .withMessage('First Name is required'),
+    .withMessage('First Name is required.'),
   check('lastName')
     .exists({ checkFalsy: true })
     .isLength({ min: 2 })
-    .withMessage('Last Name is required'),
+    .withMessage('Last Name is required.'),
   handleValidationErrors
 ];
 
