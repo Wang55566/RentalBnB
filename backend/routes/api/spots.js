@@ -5,10 +5,6 @@ const { Spot, User, SpotImage, Review, ReviewImage, Booking }= require('../../db
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const {sequelize } = require('../../db/models');
-const { Op } = require("sequelize");
-const e = require('express');
-
 const router = express.Router();
 
 // Get All Spots
@@ -426,13 +422,10 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
 
   const { startDate, endDate } = req.body;
   const { user } = req;
-
   const start = Date.parse(startDate);
   const end = Date.parse(endDate);
-
   const date = new Date();
   const currentDate = Date.parse(date);
-
 
   // Error response: Couldn't find a Spot with the specified id
   const spot = await Spot.findByPk(req.params.spotId, {
@@ -461,17 +454,6 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
     throw err;
   }
 
-  // Error response: No booking for the past
-  // if(start <= currentDate) {
-  //   const err = new Error("Start date cannot be in the past")
-  //   err.status = 403,
-  //   err.errors = {
-  //     startDate: "Start date conflicts with an existing booking",
-  //     endDate: "End date conflicts with an existing booking"
-  //   }
-  //   throw err;
-  // }
-
   // Error response: Booking conflict
   const spotObj = spot.toJSON();
 
@@ -479,22 +461,21 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res) => {
     const bookingStartDate = Date.parse(el.startDate);
     const bookingEndDate = Date.parse(el.endDate);
     if( ( (start < bookingEndDate && start > bookingStartDate)
-        || start === bookingEndDate
-        || start === bookingStartDate ) ||
-        ( (end < bookingEndDate && end > bookingStartDate)
-        || end === bookingEndDate
-        || end === bookingStartDate ) ) {
+    || start === bookingEndDate
+    || start === bookingStartDate ) ||
+    ( (end < bookingEndDate && end > bookingStartDate)
+    || end === bookingEndDate
+    || end === bookingStartDate ) ) {
 
-        const err = new Error("Sorry, this spot is already booked for the specified dates")
-        err.status = 403,
-        err.errors = {
-          startDate: "Start date conflicts with an existing booking",
-          endDate: "End date conflicts with an existing booking"
-        }
-        throw err;
+      const err = new Error("Sorry, this spot is already booked for the specified dates")
+      err.status = 403,
+      err.errors = {
+        startDate: "Start date conflicts with an existing booking",
+        endDate: "End date conflicts with an existing booking"
+      }
+      throw err;
     }
   }
-
 
   // Finally Create a Booking
   const booking = await Booking.create ({
