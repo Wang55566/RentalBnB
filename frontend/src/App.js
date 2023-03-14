@@ -4,8 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
-import Allspots from './components/DisplaySpots'
+import Allspots from './components/DisplaySpots';
 import SpotsDetails from './components/SpotDetails';
+import ReviewsByReviewId from './components/ReviewById';
+import CreateSpotForm from './components/CreateSpotForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,10 +22,14 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/" exact>
-            <Allspots />
+            <Allspots/>
+          </Route>
+          <Route path="/spots/new">
+            <CreateSpotForm/>
           </Route>
           <Route path="/spots/:id">
-            <SpotsDetails />
+            <SpotsDetails/>
+            <ReviewsByReviewId/>
           </Route>
         </Switch>
       )}

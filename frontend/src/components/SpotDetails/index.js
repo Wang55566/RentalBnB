@@ -18,17 +18,17 @@ const SpotDetails = () => {
 
   return (
     <div>
-      <div className='spot-picitures'>
+      {/* <div className='spot-picitures'>
         {Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
           <img key={img.id} src={img.url} alt='no image'/>
         )}
-      </div>
+      </div> */}
       <div>
         {spot.numReviews}
         {spot.avgStarRating}
         {spot.price}
-        {Object.values(spot).length !== 0 && spot.Owner.firstName}
-        {Object.values(spot).length !== 0 && spot.Owner.lastName}
+        {Object.values(spot).length && spot.Owner.firstName}
+        {Object.values(spot).length && spot.Owner.lastName}
       </div>
     </div>
   )

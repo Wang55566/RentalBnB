@@ -5,11 +5,13 @@ import sessionReducer from './session';
 import spotReducer from "./spot";
 
 import spot from './spot';
+import reviews from './review'
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
-  spot
+  spot,
+  reviews
 });
 
 let enhancer;
