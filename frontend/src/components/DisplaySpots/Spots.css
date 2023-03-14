@@ -1,0 +1,10 @@
+.all-spots {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.spots-holder {
+  width: 100px;
+  height: 100px;
+}

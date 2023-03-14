@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
@@ -19,6 +20,7 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
+      <>
       <li>
         <OpenModalButton
           buttonText="Log In"
@@ -29,6 +31,7 @@ function Navigation({ isLoaded }){
           modalComponent={<SignupFormModal />}
         />
       </li>
+      </>
     );
   }
 
