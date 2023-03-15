@@ -119,7 +119,7 @@ const validateCreateASpot = [
   handleValidationErrors
 ];
 
-// Creat A Spot
+// Create A Spot
 // Require Authentication: true
 router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res) => {
 

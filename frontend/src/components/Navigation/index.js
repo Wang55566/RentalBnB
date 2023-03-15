@@ -36,12 +36,16 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
+    <div className='header'>
+      <ul className='list'>
+        <li className='logo'>
+          <NavLink exact to="/"><i class="fas fa-camera fa-8x"></i></NavLink>
+        </li>
+        <li className='profile'>
+          {isLoaded && sessionLinks}
+        </li>
+      </ul>
+    </div>
   );
 }
 

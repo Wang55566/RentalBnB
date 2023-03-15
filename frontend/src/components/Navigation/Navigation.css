@@ -1,3 +1,30 @@
 .hidden {
   display: none
 }
+
+.list {
+  list-style-type: none
+}
+
+.logo {
+  width: fit-content;
+  position:absolute;
+  top: 30px;
+  left: 50px
+}
+
+.header {
+  height: 200px;
+  display:flex;
+  background-color: yellowgreen;
+}
+
+.profile {
+  position:absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.profile-dropdown {
+  list-style-type: none
+}
