@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import {createNewSpot} from '../../store/spot';
+import {readSpots, createNewSpot} from '../../store/spot';
 
 const CreateSpotForm = () => {
 
@@ -26,6 +26,8 @@ const CreateSpotForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+
+    dispatch(readSpots())
     const err = {};
     if(country.length < 1) {err.country = "Country is required"};
     if(address.length < 1) {err.address = "Address is required"};

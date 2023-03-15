@@ -21,7 +21,7 @@ const AllSpots = () => {
 
   return (
     <div className='all-spots'>
-      {Object.values(allSpots).map(spot => {
+      {Object.values(allSpots).length && Object.values(allSpots).map(spot => {
         return (
         <div key={spot.id} className='spots-holder'>
           <NavLink to={`/spots/${spot.id}`}>

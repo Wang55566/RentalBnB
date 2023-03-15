@@ -12,15 +12,19 @@ const ReviewsByReviewId = () => {
 
   const {id} = useParams();
 
-  const reviews = useSelector(state => state.reviews)
+  const spotReviews = useSelector(state => state.reviews)
 
   useEffect(() => {
     dispatch(readReviews(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className='reviews'>
-      Reviews
+      {Object.values(spotReviews).length && Object.values(spotReviews.reviews).map((review) =>
+          <div key={review.id} className='reviews'>
+            {review.review}
+          </div>
+      )}
     </div>
   )
 }

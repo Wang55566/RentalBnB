@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
 
-import {readOneSpot} from '../../store/spot';
+import {readSpots, readOneSpot} from '../../store/spot';
 
 const SpotDetails = () => {
 
@@ -14,15 +14,16 @@ const SpotDetails = () => {
 
   useEffect(() => {
     dispatch(readOneSpot(id));
-  }, [dispatch]);
+    dispatch(readSpots())
+  }, [dispatch, id]);
 
   return (
     <div>
-      {/* <div className='spot-picitures'>
+      <div className='spot-picitures'>
         {Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
-          <img key={img.id} src={img.url} alt='no image'/>
+          <img className="image_placeholder"/>
         )}
-      </div> */}
+      </div>
       <div>
         {spot.numReviews}
         {spot.avgStarRating}

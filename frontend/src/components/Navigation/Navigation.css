@@ -28,3 +28,9 @@
 .profile-dropdown {
   list-style-type: none
 }
+
+.create-new-spot {
+  position: absolute;
+  right: 300px;
+  top: 100px
+}

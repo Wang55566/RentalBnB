@@ -26,7 +26,6 @@ const editSpot = (payload) => ({
   payload
 });
 
-
 // Thunk
 export const readSpots = () => async (dispatch) => {
 
@@ -58,13 +57,12 @@ export const createNewSpot = (data) => async (dispatch) => {
   })
   if(response.ok) {
     const newSpot = await response.json();
-    console.log(newSpot)
     dispatch(addSpot(newSpot))
   }
 }
 
 export const updateSpot = (data) => async (dispatch) => {
-  const response = await fetch(`/api/spots/${data.id}`, {
+  const response = await csrfFetch(`/api/spots/${data.id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
@@ -75,6 +73,17 @@ export const updateSpot = (data) => async (dispatch) => {
     return spot;
   }
 };
+
+export const readSpotsByUser = () => async (dispatch) => {
+
+  const response = await csrfFetch(`/api/spots/current`)
+  if(response.ok) {
+    const spots = await response.json();
+    dispatch(load(spots));
+  };
+};
+
+
 
 const initialSate = { allSpots: {}, singleSpot: {} };
 
@@ -94,8 +103,10 @@ const spotReducer = (state = initialSate, action) => {
         ...state, singleSpot: {...action.payload}
       }
     case ADD:
-      return null
-
+      const newState = {...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot}};
+      const id = action.payload.id;
+      newState.allSpots[id] = action.payload;
+      return newState;
     default: return state;
   }
 }

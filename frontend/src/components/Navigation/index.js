@@ -40,8 +40,12 @@ function Navigation({ isLoaded }){
       <ul className='list'>
         {isLoaded && sessionLinks}
         <li className='logo'>
-          <NavLink exact to="/"><i className="fas fa-camera fa-8x"></i></NavLink>
+          <NavLink to="/"><i className="fas fa-camera fa-8x"></i></NavLink>
         </li>
+        <li>
+          <NavLink to="/spots/new" className='create-new-spot'>CreateNewSpots</NavLink>
+        </li>
+        <NavLink to="/spots/current" className='current-spot-button'>Manage Spots</NavLink>
       </ul>
     </div>
   );
