@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
+      <li className='profile'>
         <ProfileButton user={sessionUser} />
       </li>
     );
@@ -38,11 +38,9 @@ function Navigation({ isLoaded }){
   return (
     <div className='header'>
       <ul className='list'>
+        {isLoaded && sessionLinks}
         <li className='logo'>
-          <NavLink exact to="/"><i class="fas fa-camera fa-8x"></i></NavLink>
-        </li>
-        <li className='profile'>
-          {isLoaded && sessionLinks}
+          <NavLink exact to="/"><i className="fas fa-camera fa-8x"></i></NavLink>
         </li>
       </ul>
     </div>

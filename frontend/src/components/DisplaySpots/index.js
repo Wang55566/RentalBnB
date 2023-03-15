@@ -25,9 +25,7 @@ const AllSpots = () => {
         return (
         <div key={spot.id} className='spots-holder'>
           <NavLink to={`/spots/${spot.id}`}>
-            <div className='spot-picitures'>
-              <img src={spot.previewImage} alt='no image'/>
-           </div>
+              <img className="image_placeholder"/>
           </NavLink>
           <p>{spot.state}, {spot.city}</p>
         </div>)

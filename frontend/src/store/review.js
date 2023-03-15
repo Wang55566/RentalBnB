@@ -21,7 +21,7 @@ const reviewReducer = (state = initialSate, action) => {
   switch(action.type) {
     case LOAD:
       const reviews = {};
-      action.payload.Reviews.forEach((review) => {
+      action.payload.Reviews && action.payload.Reviews.forEach((review) => {
         reviews[review.id] = review;
       });
       return {

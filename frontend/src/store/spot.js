@@ -56,9 +56,9 @@ export const createNewSpot = (data) => async (dispatch) => {
     },
     body: JSON.stringify(data),
   })
-
   if(response.ok) {
     const newSpot = await response.json();
+    console.log(newSpot)
     dispatch(addSpot(newSpot))
   }
 }
@@ -94,9 +94,7 @@ const spotReducer = (state = initialSate, action) => {
         ...state, singleSpot: {...action.payload}
       }
     case ADD:
-      const addNewSpot = {...state, allSpots: {...allSpots}};
-      addNewSpot[allSpots][action.payload.id] = {...action.payload}
-      return addNewSpot;
+      return null
 
     default: return state;
   }

@@ -60,6 +60,9 @@ const CreateSpotForm = () => {
       description,
       name,
       price,
+      lat:50,
+      lng:100
+
     }
 
     let spot;
@@ -109,8 +112,7 @@ const CreateSpotForm = () => {
         <p>{errors.description}</p>
         <label>
         Description
-          <input
-            type ="text"
+          <textarea
             value={description}
             onChange={updateDescription}
           />
