@@ -21,7 +21,7 @@ const SpotDetails = () => {
     <div>
       <div className='spot-picitures'>
         {Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
-          <img className="image_placeholder"/>
+          <img key={img.id} className="image_placeholder"/>
         )}
       </div>
       <div>

@@ -103,7 +103,7 @@ const spotReducer = (state = initialSate, action) => {
         ...state, singleSpot: {...action.payload}
       }
     case ADD:
-      const newState = {...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot}};
+      const newState = {...state, allSpots: {...state.allSpots}, singleSpot: {...action.payload}};
       const id = action.payload.id;
       newState.allSpots[id] = action.payload;
       return newState;

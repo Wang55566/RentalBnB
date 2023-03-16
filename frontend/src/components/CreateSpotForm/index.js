@@ -7,6 +7,8 @@ import {readSpots, createNewSpot} from '../../store/spot';
 const CreateSpotForm = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+  const newSpot = useSelector(state => state.spot.singleSpot);
 
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
@@ -27,8 +29,37 @@ const CreateSpotForm = () => {
 
   useEffect(() => {
 
-    dispatch(readSpots())
+    // dispatch(readSpots())
     const err = {};
+    if(Object.values(errors).length !== 0) {
+      if(country.length < 1) {err.country = "Country is required"};
+      if(address.length < 1) {err.address = "Address is required"};
+      if(city.length < 1) {err.city = "City is required"};
+      if(state.length < 1) {err.state = "State is required"};
+      if(description.length < 30) {err.description = "Description needs a minimum of 30 characters"};
+      if(name.length < 1) {err.name = "Name is required"};
+      if(price.length < 1) {err.price = "Price is required"};
+      if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
+      setErrors(err);
+    }
+  }, [country, address, city, state, description, name, price, previewImage, errors]);
+
+  const updateCountry = (e) => setCountry(e.target.value);
+  const updateAddress = (e) => setAddress(e.target.value);
+  const updateCity = (e) => setCity(e.target.value);
+  const updateState = (e) => setState(e.target.value);
+  const updateDescription = (e) => setDescription(e.target.value);
+  const updateName = (e) => setName(e.target.value);
+  const updatePrice = (e) => setPrice(e.target.value);
+  const updatePreivewImage = (e) => setPreviewImage(e.target.value);
+
+
+  const onSubmit = async (e) => {
+
+    e.preventDefault();
+
+    const err ={};
+
     if(country.length < 1) {err.country = "Country is required"};
     if(address.length < 1) {err.address = "Address is required"};
     if(city.length < 1) {err.city = "City is required"};
@@ -38,38 +69,24 @@ const CreateSpotForm = () => {
     if(price.length < 1) {err.price = "Price is required"};
     if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
     setErrors(err);
-  },[country, address, city, state, description, name, price, previewImage]);
 
-  const updateCountry = (e) => setCountry(e.target.value);
-  const updateAddress = (e) => setAddress(e.target.value);
-  const updateCity = (e) => setCity(e.target.value);
-  const updateState = (e) => setState(e.target.value);
-  const updateDescription = (e) => setDescription(e.target.value);
-  const updateName = (e) => setName(e.target.value);
-  const updatePrice = (e) => setPrice(e.target.value);
+    if(Object.values(errors).length === 0) {
 
-  const updatePreivewImage = (e) => setPreviewImage(e.target.value);
+      const payload = {
+        country,
+        address,
+        city,
+        state,
+        description,
+        name,
+        price,
+        lat:50,
+        lng:100
+      }
 
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const payload = {
-      country,
-      address,
-      city,
-      state,
-      description,
-      name,
-      price,
-      lat:50,
-      lng:100
-
+      dispatch(createNewSpot(payload));
+      history.push(`/spots/${newSpot.id}`);
     }
-
-    let spot;
-
-    spot = await dispatch(createNewSpot(payload))
   }
 
   return (
