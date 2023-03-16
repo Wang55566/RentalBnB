@@ -25,9 +25,13 @@ const AllSpots = () => {
         return (
         <div key={spot.id} className='spots-holder'>
           <NavLink to={`/spots/${spot.id}`}>
-              <img className="image_placeholder"/>
+              <img className="image_placeholder" alt=''/>
           </NavLink>
-          <p>{spot.state}, {spot.city}</p>
+          <div className='spot-info'>
+            <p className='location'>{spot.city},{spot.state}</p>
+            <p className='price'>${spot.price} night</p>
+          </div>
+
         </div>)
       })}
     </div>

@@ -20,7 +20,7 @@ function Navigation({ isLoaded }){
           <NavLink to="/"><i className="fas fa-camera fa-8x"></i></NavLink>
         </li>
         <li>
-          <NavLink to="/spots/new" className='create-new-spot'>CreateNewSpots</NavLink>
+          <NavLink to="/spots/new" className='create-new-spot'>Create NewSpots</NavLink>
         </li>
       </ul>
     </div>

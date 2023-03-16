@@ -11,6 +11,8 @@ import CreateSpotForm from './components/CreateSpotForm';
 import CurrentUserSpot from './components/ManageSpot';
 import EditSpotForm from './components/EditSpotForm';
 
+import backgroundImage from './retro_bg.jpg'
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,7 +21,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className='app'>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -41,7 +43,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
 

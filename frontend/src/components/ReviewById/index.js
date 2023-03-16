@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 
 import { readReviews } from "../../store/review";
 
+import './review.css';
+
 const ReviewsByReviewId = () => {
 
   const dispatch = useDispatch();
@@ -20,9 +22,18 @@ const ReviewsByReviewId = () => {
 
   return (
     <div className='reviews'>
+      <h1>Review</h1>
       {Object.values(spotReviews).length && Object.values(spotReviews.reviews).map((review) =>
-          <div key={review.id} className='reviews'>
-            {review.review}
+          <div key={review.id} className='review-box'>
+            <div className='firstName'>
+              {review && review.User.firstName}
+            </div>
+            <div className='year'>
+              {review && review.createdAt.split("-")[0]}
+            </div>
+            <div className='comment'>
+              {review && review.review}
+            </div>
           </div>
       )}
     </div>
