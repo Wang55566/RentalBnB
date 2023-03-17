@@ -4,6 +4,7 @@ const LOAD = "spots/LOAD";
 const LOAD_ONE = "spot/LOAD_ONE";
 const ADD = "spot/CREATE";
 const EDIT = "spot/EDIT";
+const DELETE = "spot/DELETE"
 
 // Action
 const load = (payload) => ({
@@ -25,6 +26,11 @@ const editSpot = (payload) => ({
   type: EDIT,
   payload
 });
+
+const deleteSpot = (payload) => ({
+  type: DELETE,
+  payload
+})
 
 // Thunk
 export const readSpots = () => async (dispatch) => {
@@ -61,8 +67,8 @@ export const createNewSpot = (data) => async (dispatch) => {
   }
 }
 
-export const updateSpot = (data) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${data.id}`, {
+export const updateSpot = (data, id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
@@ -82,6 +88,16 @@ export const readSpotsByUser = () => async (dispatch) => {
   };
 };
 
+export const deleteASpot = (spotId) => async (dispatch) => {
+
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "delete",
+  });
+
+  if (response.ok) {
+    dispatch(deleteSpot(spotId))
+  }
+};
 
 
 const initialSate = { allSpots: {}, singleSpot: {} };
@@ -106,6 +122,10 @@ const spotReducer = (state = initialSate, action) => {
       const id = action.payload.id;
       newState.allSpots[id] = action.payload;
       return newState;
+    case DELETE:
+      const deletedState = {...state, allSpots: {...state.allSpots}}
+      delete deletedState.allSpots[action.payload.id];
+      return deletedState;
     default: return state;
   }
 }

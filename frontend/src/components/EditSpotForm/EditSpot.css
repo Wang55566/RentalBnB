@@ -1,0 +1,15 @@
+h1 {
+  font-family: cursive;
+  margin-left:40px;
+  width:fit-content
+}
+
+p.errors {
+  font-size: 13px;
+  font-family: cursive;
+  color: red;
+}
+
+.edit-button {
+  margin-top: 30px;
+}

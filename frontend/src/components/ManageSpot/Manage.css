@@ -1,0 +1,73 @@
+.all-spots {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.spots-holder {
+  block-size: fit-content;
+  width: 300px;
+  height: 350px;
+  margin: 20px;
+  align-items: center;
+
+}
+
+.spot-info {
+  font-family: cursive;
+  font-weight: bold;
+  color: blueviolet;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+
+p.price {
+  margin: 15px 0px 15px 0px;
+}
+
+.rating {
+  font-weight: bold;
+  margin-left:260px;
+  max-width: fit-content;
+
+}
+
+.update-delete-button {
+  display: flex;
+  justify-content: flex-end
+}
+.update-botton {
+  text-decoration-line: none;
+  box-shadow: 8px 3px 3px red;
+  margin-bottom: 20px;
+  color: rgb(7, 1, 1);
+  background-color: rgb(154, 197, 34);
+  margin-right: 20px;
+}
+
+.delete-botton {
+  height:fit-content;
+}
+
+
+@media (min-width:950px) and (max-width:1380px) {
+  .all-spots {
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+  }
+}
+
+@media (min-width:671px) and (max-width:949px) {
+  .all-spots {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
+
+@media (mind-width:300px) and (max-width:670px) {
+  .all-spots {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+}

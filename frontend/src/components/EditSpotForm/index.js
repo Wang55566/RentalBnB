@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { readOneSpot, readSpots, createNewSpot } from "../../store/spot";
+import { useParams, useHistory } from "react-router-dom";
+import { readOneSpot, readSpots, updateSpot } from "../../store/spot";
+
+import './EditSpot.css'
 
 const EditSpotForm = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const {id} = useParams();
 
   const spot = useSelector( (state) => state.spot.singleSpot);
@@ -18,12 +21,10 @@ const EditSpotForm = () => {
   const [name, setName] = useState(spot.name || "");
   const [price, setPrice] = useState(spot.price || "");
 
-  const [previewImage, setPreviewImage] = useState("");
-
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-
+    dispatch(readOneSpot(id))
     dispatch(readSpots())
     const err = {};
     if(country.length < 1) {err.country = "Country is required"};
@@ -33,14 +34,8 @@ const EditSpotForm = () => {
     if(description.length < 30) {err.description = "Description needs a minimum of 30 characters"};
     if(name.length < 1) {err.name = "Name is required"};
     if(price.length < 1) {err.price = "Price is required"};
-    if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
     setErrors(err);
-  },[country, address, city, state, description, name, price, previewImage]);
-
-  useEffect(() => {
-    dispatch(readOneSpot(id))
-  }, [dispatch, id])
-
+  },[country, address, city, state, description, name, price, dispatch]);
 
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);
@@ -50,10 +45,20 @@ const EditSpotForm = () => {
   const updateName = (e) => setName(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
 
-  const updatePreivewImage = (e) => setPreviewImage(e.target.value);
-
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // const err = {}
+
+    // if(country.length < 1) {err.country = "Country is required"};
+    // if(address.length < 1) {err.address = "Address is required"};
+    // if(city.length < 1) {err.city = "City is required"};
+    // if(state.length < 1) {err.state = "State is required"};
+    // if(description.length < 30) {err.description = "Description needs a minimum of 30 characters"};
+    // if(name.length < 1) {err.name = "Name is required"};
+    // if(price.length < 1) {err.price = "Price is required"};
+
+    if(Object.values(errors).length === 0) {
 
     const payload = {
       country,
@@ -65,18 +70,22 @@ const EditSpotForm = () => {
       price,
       lat:50,
       lng:100
-
     }
 
     let spot;
 
-    spot = await dispatch(createNewSpot(payload))
+    const upDatedSpot = await dispatch(updateSpot(payload, id))
+
+    if(upDatedSpot) {
+      history.push(`/spots/${upDatedSpot.payload.id}`);
+    }
+    }
   }
 
   return (
     <section className='spot-form-holder'>
       <form className='create-spot-form' onSubmit={onSubmit}>
-        <p>{errors.country}</p>
+        <p className='errors'>{errors.country}</p>
         <label>
         Country
           <input
@@ -85,7 +94,7 @@ const EditSpotForm = () => {
             onChange={updateCountry}
           />
         </label>
-        <p>{errors.address}</p>
+        <p className='errors'>{errors.address}</p>
         <label>
         Street Address
           <input
@@ -94,7 +103,7 @@ const EditSpotForm = () => {
             onChange={updateAddress}
           />
         </label>
-        <p>{errors.city}</p>
+        <p className='errors'>{errors.city}</p>
         <label>
         City
           <input
@@ -103,7 +112,7 @@ const EditSpotForm = () => {
             onChange={updateCity}
           />
         </label>
-        <p>{errors.state}</p>
+        <p className='errors'>{errors.state}</p>
         <label>
         State
           <input
@@ -112,7 +121,7 @@ const EditSpotForm = () => {
             onChange={updateState}
           />
         </label>
-        <p>{errors.description}</p>
+        <p className='errors'>{errors.description}</p>
         <label>
         Description
           <textarea
@@ -120,7 +129,7 @@ const EditSpotForm = () => {
             onChange={updateDescription}
           />
         </label>
-        <p>{errors.name}</p>
+        <p className='errors'>{errors.name}</p>
         <label>
         Name
           <input
@@ -129,7 +138,7 @@ const EditSpotForm = () => {
             onChange={updateName}
           />
         </label>
-        <p>{errors.price}</p>
+        <p className='errors'>{errors.price}</p>
         <label>
         Price
           <input
@@ -138,16 +147,7 @@ const EditSpotForm = () => {
             onChange={updatePrice}
           />
         </label>
-        <p>{errors.previewImage}</p>
-        <label>
-        PreviewImage
-          <input
-            type ="text"
-            value={previewImage}
-            onChange={updatePreivewImage}
-          />
-        </label>
-        <button type="submit">Edit Spot</button>
+        <button className='edit-button' type="submit">Edit Spot</button>
       </form>
   </section>
   )

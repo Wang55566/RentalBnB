@@ -27,6 +27,10 @@ const AllSpots = () => {
           <NavLink to={`/spots/${spot.id}`}>
               <img className="image_placeholder" alt=''/>
           </NavLink>
+          <div className='rating'>
+            {spot.avgRating ? <span className="fa fa-star checked">{spot.avgRating}</span>
+            :<span className="fa fa-star checked">NEW</span>}
+          </div>
           <div className='spot-info'>
             <p className='location'>{spot.city},{spot.state}</p>
             <p className='price'>${spot.price} night</p>

@@ -100,8 +100,7 @@ const CreateSpotForm = () => {
     //   err.previewImage = "Image URL needs to end in png or jpg (or jpeg)"
     // }
     // if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
-
-    // setErrors(err);
+    console.log(errors)
 
     if(Object.values(errors).length === 0) {
 
@@ -181,10 +180,10 @@ const CreateSpotForm = () => {
             onChange={updateDescription}
           />
         </label>
-        <p className='errors'>{errors.name}</p>
         <h2>Create a title for your spot</h2>
         <h3>Mention the best features of your space, any special amentities like<br>
         </br>fast wif or parking, and what you love about the neighborhood</h3>
+        <p className='errors'>{errors.name}</p>
         <label>
         Name
           <input
@@ -193,10 +192,10 @@ const CreateSpotForm = () => {
             onChange={updateName}
           />
         </label>
-        <p className='errors'>{errors.price}</p>
         <h2>Set a base price for your spot</h2>
         <h3>Competitive pricing can help your listing stand out and rank higher<br>
         </br>in search results.</h3>
+        <p className='errors'>{errors.price}</p>
         <label>
         Price
           <input
@@ -205,9 +204,9 @@ const CreateSpotForm = () => {
             onChange={updatePrice}
           />
         </label>
-        <p className='errors'>{errors.previewImage}</p>
         <h2>Liven up your spot with photos</h2>
         <h3>Submit a link to at least one photo to publish your spot.</h3>
+        <p className='errors'>{errors.previewImage}</p>
         <label>
         PreviewImage
           <input
