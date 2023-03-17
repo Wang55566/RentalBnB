@@ -11,8 +11,6 @@ import CreateSpotForm from './components/CreateSpotForm';
 import CurrentUserSpot from './components/ManageSpot';
 import EditSpotForm from './components/EditSpotForm';
 
-import backgroundImage from './retro_bg.jpg'
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

@@ -34,13 +34,13 @@ const SpotDetails = () => {
       <p className ='host-text'>Host By {Object.values(spot).length && spot.Owner.firstName} {Object.values(spot).length && spot.Owner.lastName}</p>
       <div className='reserve-box'>
         <div className='reserve-detail'>
-          <div className='review-numbers'>{spot.numReviews} reviews</div>
-          <div className='rating'>rating {spot.avgStarRating}</div>
+          <div className='review-numbers'>{spot.numReviews > 0 ? `review: ${spot.numReviews}` : <span className="fa fa-star checked">NEW</span>}</div>
+          <div className='rating'>{spot.numReviews > 0 ? `rating: ${spot.avgStarRating}` : ""}</div>
           <div className='price'>${spot.price} night</div>
         </div>
       </div>
       <p>{spot.description}</p>
-      <button class='reserve-button'>Reserve</button>
+      <button className='reserve-button'>Reserve</button>
       </div>
       <div>
       </div>

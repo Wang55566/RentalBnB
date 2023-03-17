@@ -57,7 +57,7 @@ export const createNewSpot = (data) => async (dispatch) => {
   })
   if(response.ok) {
     const newSpot = await response.json();
-    dispatch(addSpot(newSpot))
+    return dispatch(addSpot(newSpot))
   }
 }
 
@@ -69,8 +69,7 @@ export const updateSpot = (data) => async (dispatch) => {
 
   if (response.ok) {
     const spot = await response.json();
-    dispatch(editSpot(spot));
-    return spot;
+    return dispatch(editSpot(spot));
   }
 };
 
@@ -91,9 +90,9 @@ const initialSate = { allSpots: {}, singleSpot: {} };
 const spotReducer = (state = initialSate, action) => {
   switch(action.type) {
     case LOAD:
-      const allSpots = {};
-      action.payload.Spots.forEach((spot) => {
-        allSpots[spot.id] = spot;
+        const allSpots = {};
+        action.payload.Spots.forEach( (spot) => {
+          allSpots[spot.id] = spot;
       });
       return {
         ...state, allSpots: {...allSpots}
@@ -103,7 +102,7 @@ const spotReducer = (state = initialSate, action) => {
         ...state, singleSpot: {...action.payload}
       }
     case ADD:
-      const newState = {...state, allSpots: {...state.allSpots}, singleSpot: {...action.payload}};
+      const newState = {...state, allSpots: {...state.allSpots}};
       const id = action.payload.id;
       newState.allSpots[id] = action.payload;
       return newState;

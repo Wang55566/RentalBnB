@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { NavLink, Route, useParams } from "react-router-dom";
-
 
 import { readSpots, readOneSpot } from "../../store/spot";
 
@@ -31,7 +31,6 @@ const AllSpots = () => {
             <p className='location'>{spot.city},{spot.state}</p>
             <p className='price'>${spot.price} night</p>
           </div>
-
         </div>)
       })}
     </div>

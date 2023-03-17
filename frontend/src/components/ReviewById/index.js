@@ -26,16 +26,17 @@ const ReviewsByReviewId = () => {
       {Object.values(spotReviews).length && Object.values(spotReviews.reviews).map((review) =>
           <div key={review.id} className='review-box'>
             <div className='firstName'>
-              {review && review.User.firstName}
+              {review.User.firstName}
             </div>
             <div className='year'>
-              {review && review.createdAt.split("-")[0]}
+              {review.createdAt.split("-")[0]}
             </div>
             <div className='comment'>
-              {review && review.review}
+              {review.review}
             </div>
           </div>
       )}
+      {Object.values(spotReviews.reviews).length === 0 && <span className="fa fa-star checked">NEW</span>}
     </div>
   )
 }

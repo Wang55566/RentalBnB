@@ -4,7 +4,6 @@
   align-items: flex-start;
   font-family: cursive;
   color:blueviolet;
-  margin-left: 1rem
 }
 
 .image_placeholder {
@@ -15,8 +14,7 @@
   display:grid;
   grid-template-columns: 50% 50% ;
   font-family: cursive;
-  margin-left: 1rem;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px dotted rgb(249, 17, 17);
 
 }
 

@@ -38,8 +38,8 @@ router.get('/', async (req, res) => {
       // avgRating
       {model: Review}
     ],
-    limit: size,
-    offset: size * (page - 1)
+    // limit: size,
+    // offset: size * (page - 1)
   });
 
   const spotsArr = [];
@@ -77,8 +77,8 @@ router.get('/', async (req, res) => {
 
     res.json({
       Spots: spotsArr,
-      page: page,
-      size: size
+      // page: page,
+      // size: size
     });
 })
 
