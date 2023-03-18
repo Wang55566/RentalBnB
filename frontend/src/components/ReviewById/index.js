@@ -36,7 +36,6 @@ const ReviewsByReviewId = () => {
             </div>
           </div>
       )}
-      {Object.values(spotReviews.reviews).length === 0 && <span className="fa fa-star checked">NEW</span>}
     </div>
   )
 }

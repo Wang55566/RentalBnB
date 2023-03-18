@@ -37,6 +37,10 @@ const EditSpotForm = () => {
     setErrors(err);
   },[country, address, city, state, description, name, price, dispatch]);
 
+  useEffect(() => {
+    setErrors({})
+  },[]);
+
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);
   const updateCity = (e) => setCity(e.target.value);

@@ -4,20 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import {readSpots, readOneSpot} from '../../store/spot';
+import {readReviews} from '../../store/review';
 
 import './SpotDetails.css';
+
+import PostReview from '../PostReview';
+
+import {restoreUser} from '../../store/session';
 
 const SpotDetails = () => {
 
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const user = useSelector(state => state.session.user);
   const spot = useSelector(state => state.spot.singleSpot);
+  const review = useSelector(state => state.reviews);
+
+  console.log(spot, review)
 
   useEffect(() => {
     dispatch(readOneSpot(id));
     dispatch(readSpots())
-  }, [dispatch, id]);
+    dispatch(readReviews(id))
+  }, [dispatch]);
 
   return (
     <>
@@ -34,7 +44,7 @@ const SpotDetails = () => {
       <p className ='host-text'>Host By {Object.values(spot).length && spot.Owner.firstName} {Object.values(spot).length && spot.Owner.lastName}</p>
       <div className='reserve-box'>
         <div className='reserve-detail'>
-          <div className='review-numbers'>{spot.numReviews > 0 ? `review: ${spot.numReviews}` : <span className="fa fa-star checked">NEW</span>}</div>
+          <div className='review-numbers'>{spot.numReviews > 0 ? `review: ${spot.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
           <div className='rating'>{spot.numReviews > 0 ? `rating: ${spot.avgStarRating}` : ""}</div>
           <div className='price'>${spot.price} night</div>
         </div>
@@ -42,7 +52,14 @@ const SpotDetails = () => {
       <p>{spot.description}</p>
       <button className='reserve-button'>Reserve</button>
       </div>
+      <div className='reserve-detail'>
+          <div className='review-numbers'>{spot.numReviews > 0 ? `review: ${spot.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
+          <div className='rating'>{spot.numReviews > 0 ? `rating: ${spot.avgStarRating}` : ""}</div>
+      </div>
+      <div className='post-review-button'>
+      </div>
       <div>
+          {}
       </div>
     </>
   )

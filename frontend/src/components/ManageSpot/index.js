@@ -38,8 +38,8 @@ return (
             <img className="image_placeholder"/>
         </NavLink>
         <div className='rating'>
-            {spot.avgRating ? <span className="fa fa-star checked">{spot.avgRating}</span>
-            :<span className="fa fa-star checked">NEW</span>}
+            {spot.avgRating ? <span className="fa fa-star">{spot.avgRating}</span>
+            :<span className="fa fa-star">NEW</span>}
         </div>
         <div className='spot-info'>
             <p className='location'>{spot.city},{spot.state}</p>

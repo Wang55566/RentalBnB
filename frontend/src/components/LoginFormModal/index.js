@@ -26,6 +26,11 @@ function LoginFormModal() {
       );
   };
 
+  const demoUser = async () => {
+    await dispatch (sessionActions.login({ credential: "FakeUser4", password:"password4"}));
+    closeModal()
+  }
+
   return (
     <div className='login-form'>
       <h1>Log In</h1>
@@ -55,6 +60,8 @@ function LoginFormModal() {
         </label>
         <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
       </form>
+
+        <button onClick={demoUser}>Log in as Demo User</button>
     </div>
   );
 }

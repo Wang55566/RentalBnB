@@ -46,27 +46,33 @@ const CreateSpotForm = () => {
       }
       if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
 
-      const urlTwo = image2.split('.');
-      const urlThree = image3.split('.');
-      const urlFour = image4.split('.');
-      const urlFive = image5.split('.');
+      // const urlTwo = image2.split('.');
+      // const urlThree = image3.split('.');
+      // const urlFour = image4.split('.');
+      // const urlFive = image5.split('.');
 
-      if(!['jpg', 'jpeg', 'png'].includes(urlTwo[urlTwo.length - 1])) {
-        err.urlTwo = "Image URL needs to end in png or jpg (or jpeg)"
-      }
-      if(!['jpg', 'jpeg', 'png'].includes(urlThree[urlThree.length - 1])) {
-        err.urlThree = "Image URL needs to end in png or jpg (or jpeg)"
-      }
-      if(!['jpg', 'jpeg', 'png'].includes(urlFour[urlFour.length - 1])) {
-        err.urlFour = "Image URL needs to end in png or jpg (or jpeg)"
-      }
-      if(!['jpg', 'jpeg', 'png'].includes(urlFive[urlFive.length - 1])) {
-        err.urlFive = "Image URL needs to end in png or jpg (or jpeg)"
-      }
+      // if(!['jpg', 'jpeg', 'png'].includes(urlTwo[urlTwo.length - 1])) {
+      //   err.urlTwo = "Image URL needs to end in png or jpg (or jpeg)"
+      // }
+      // if(!['jpg', 'jpeg', 'png'].includes(urlThree[urlThree.length - 1])) {
+      //   err.urlThree = "Image URL needs to end in png or jpg (or jpeg)"
+      // }
+      // if(!['jpg', 'jpeg', 'png'].includes(urlFour[urlFour.length - 1])) {
+      //   err.urlFour = "Image URL needs to end in png or jpg (or jpeg)"
+      // }
+      // if(!['jpg', 'jpeg', 'png'].includes(urlFive[urlFive.length - 1])) {
+      //   err.urlFive = "Image URL needs to end in png or jpg (or jpeg)"
+      // }
 
       setErrors(err);
 
-  }, [country, address, city, state, description, name, price, previewImage, dispatch]);
+  }, [country, address, city, state, description, name, price, , previewImage, dispatch]);
+
+  useEffect(() => {
+    setErrors({});
+  },[])
+
+
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);
   const updateCity = (e) => setCity(e.target.value);
@@ -100,8 +106,6 @@ const CreateSpotForm = () => {
     //   err.previewImage = "Image URL needs to end in png or jpg (or jpeg)"
     // }
     // if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
-    console.log(errors)
-
     if(Object.values(errors).length === 0) {
 
       const payload = {
@@ -172,7 +176,7 @@ const CreateSpotForm = () => {
         <h3>Mention the best features of your space, any special amentities like<br/>
             fast wif or parking, and what you love about the neighborhood.
         </h3>
-        <p className='errors'>{errors.description}</p>
+        <p className='errors'>{errors.description || " "}</p>
         <label>
         Description
           <textarea
