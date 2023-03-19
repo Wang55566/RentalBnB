@@ -1,36 +1,44 @@
 .reviews {
   font-family: cursive;
+  font-weight: bold;
+  margin-top:34px;
+  margin-left:20px;
+  margin-bottom: 120px;
 }
 
-
-h1 {
-  justify-content: flex-start;
-  margin-left:1rem;
+div.reserve-detail {
+  display: flex;
+  font-size: 25px;
 }
 
-.review-box {
+div.post-review {
+  margin-top:20px;
+}
+
+div.review-box {
   margin-top: 10px;
+  font-weight: bolder;
+  font-family: system-ui;
+  font-size: 20px;
+  color:blueviolet
 }
 
 .firstName {
-  margin-left:1rem;
+  margin-left:15px;
 }
 
 .year-month {
-  margin-left:1rem;
+  margin-left:15px;
 }
 .comment {
-  margin-left:1rem;
-}
-
-.reviews {
-  font-family: cursive;
+  margin-left:15px;
 }
 
 .be-the-first {
   margin-left:40px;
 }
 
-.reserve-detail {
-  display: flex;
+div.delete-review-botton {
+  margin-top: 20px;
+  margin-left:1rem;
 }

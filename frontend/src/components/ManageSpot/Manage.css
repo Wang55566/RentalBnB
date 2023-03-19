@@ -45,6 +45,10 @@ p.price {
   color: rgb(7, 1, 1);
   background-color: rgb(154, 197, 34);
   margin-right: 20px;
+  border-radius: 4px;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 14.5px;
 }
 
 .delete-botton {
@@ -55,10 +59,11 @@ p.price {
   font-size: 15px;
   font-weight: bolder;
   font-family: cursive;
-  color:brown;
+  color: rgb(7, 0, 0);
   text-decoration-line: none;
   background-color: rgb(237, 225, 227);
-  box-shadow: 8px 3px 3px red;
+  box-shadow: 8px 3px 3px rgb(97, 48, 48);
+  border-radius: 10px;
   margin:40px;
 }
 
@@ -77,9 +82,8 @@ p.price {
   }
 }
 
-@media (mind-width:300px) and (max-width:670px) {
+@media (max-width:670px) {
   .all-spots {
-    display: grid;
-    grid-template-columns: 100%;
+    display:block;
   }
 }

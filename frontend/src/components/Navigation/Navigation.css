@@ -39,10 +39,11 @@
   font-size: 15px;
   font-weight: bolder;
   font-family: cursive;
-  color:brown;
+  color:rgb(7, 0, 0);
   text-decoration-line: none;
   background-color: rgb(237, 225, 227);
-  box-shadow: 8px 3px 3px red;
+  box-shadow: 8px 3px 3px rgb(97, 48, 48);
+  border-radius: 10px;
 }
 
 button {
@@ -60,6 +61,15 @@ button {
 
 .log-in-button {
   font-size: 5px;
+}
+
+a.current-spot-button {
+  border-radius: 10px;
+  color:rgb(7, 0, 0);
+  background-color: rgb(237, 225, 227);
+  box-shadow: 8px 3px 3px rgb(97, 48, 48);
+  font-weight: bolder;
+  font-family: cursive;
 }
 
 @media (max-width: 710px) {

@@ -44,24 +44,22 @@ const ReviewsByReviewId = () => {
   return (
     <div className='reviews'>
       <div className='review-header'>
-      <div className='reserve-detail'>
+        <div className='reserve-detail'>
           <div className='review-numbers'>{spot.numReviews > 0 ? `${spot.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
           <div>
             <div>{spot.numReviews === 1 ? `review`: ''}</div>
             <div>{spot.numReviews > 1 ? `reviews`: ''}</div>
             <div>{spot.numReviews === 0 ?  "": ""}</div>
           </div>
-            <div className='dot'>{spot.numReviews === 0 ? "" :"·"}</div>
-            <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
-        <div>
-
-        <div className='post-review-button'>{!currentUser || currentUser?.id === spot.Owner?.id || checkReview === true ? "" : <PostReview/>}</div>
-        {/* <div><PostReview/></div> */}
-
+          <div className='dot'>{spot.numReviews === 0 ? "" :"·"}</div>
+          <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
         </div>
+        <div>
+          <div className='post-review-button'>{!currentUser || currentUser?.id === spot.Owner?.id || checkReview === true ? "" : <PostReview/>}</div>
+        </div>
+
       </div>
-      <h1>Reviews</h1>
-      </div>
+
       <div className='review-content'>
       {Object.values(spotReviews).length && Object.values(spotReviews.reviews).map((review) =>
           <div key={review.id} className='review-box'>
