@@ -38,8 +38,10 @@ const SpotDetails = () => {
   return (
     <>
     <div className='spot-details'>
-      <h1>{spot.name}</h1>
-      <h2>{spot.city}, {spot.state}, {spot.country}</h2>
+      <div className='title'>
+        <h1>{spot.name}</h1>
+        <h2>{spot.city}, {spot.state}, {spot.country}</h2>
+      </div>
       <div className='spot-pictures'>
         <div className='image1'>
         {spot && Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
@@ -48,49 +50,50 @@ const SpotDetails = () => {
         {/* {!spot.SpotImages? <img src= {spot.previewImage} alt='' width='600px' height='400px'/> : ""} */}
         {/* {spot.previewImage ? <img className="image_placeholder" src= {spot.previewImage} alt=''/> : <img className="image_placeholder"/>} */}
         </div>
-        <div className='optional2'>
-      <div className='image2'><img className="image_placeholder"/></div>
-      <div className='image3'><img className="image_placeholder"/></div>
-      <div className='optional3'>
-      {/* <div className='image4'><img className="image_placeholder"/></div>
-      <div className='image5'><img className="image_placeholder"/></div> */}
+        <div className='image2-image3'>
+          <div className='image2'><img className="image_placeholder"/></div>
+          <div className='image3'><img className="image_placeholder"/></div>
       </div>
-      </div>
-      </div>
+        <div className='image4-image5'>
+          <div className='image4'><img className="image_placeholder"/></div>
+          <div className='image5'><img className="image_placeholder"/></div>
+        </div>
+    </div>
 
     </div>
       <div className='spot-content'>
-      <p className ='host-text'>Host By {Object.values(spot).length && spot?.Owner?.firstName} {Object.values(spot)?.length && spot?.Owner?.lastName}</p>
+        <div className='host-name-spot-info'>
+          <p className ='host-text'>Host By {Object.values(spot).length && spot?.Owner?.firstName} {Object.values(spot)?.length && spot?.Owner?.lastName}</p>
+          <p>{spot.description}</p>
+        </div>
       <div className='reserve-box'>
-        <div className='reserve-detail'>
-          <div className='review-numbers'>{spot?.numReviews > 0 ? `${spot?.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
-          <div>
+        <div className='review-dot-rating'>
+          <div className='reserve-review-rating'>
+            <div>{spot?.numReviews > 0 ? `${spot?.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
+          </div>
+          <div claaName='review'>
             <div>{spot?.numReviews === 1 ? `review`: ''}</div>
             <div>{spot?.numReviews > 1 ? `reviews`: ''}</div>
             <div>{spot?.numReviews === 0 ?  "": ""}</div>
           </div>
-            <div className='dot'>{spot?.numReviews === 0 ? "" :"·"}</div>
-            <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
-        <div>
-
-          </div>
-          <div className='price'>${spot?.price} night</div>
+          <div className='dot'>{spot?.numReviews === 0 ? "" :"·"}</div>
+          <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
         </div>
-      </div>
-      <p>{spot.description}</p>
-      <div className='reserve-button'>
+        <div className='price'>${spot?.price} night</div>
+        <div className='reserve-button'>
               <OpenModalButton
                 id='id'
                 buttonText="Reserve"
                 modalComponent={<ReserveMessageModal />}
               />
-            </div>
+        </div>
       </div>
-      {/* <div className='post-review-button'>
-      <PostReview/>
-      </div> */}
-      <div>
-      </div>
+    </div>
+           <div>
+            {/* <div className='post-review-button'>
+              <PostReview/>
+            </div> */}
+          </div>
     </>
   )
 }

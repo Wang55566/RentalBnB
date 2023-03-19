@@ -34,7 +34,7 @@
 
 .create-new-spot {
   position: absolute;
-  right:300px;
+  right:200px;
   top: 100px;
   font-size: 15px;
   font-weight: bolder;
@@ -60,4 +60,14 @@ button {
 
 .log-in-button {
   font-size: 5px;
+}
+
+@media (max-width: 710px) {
+
+  a.create-new-spot {
+    position:absolute;
+    right:200px;
+    top: 250px;
+
+  }
 }

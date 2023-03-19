@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
     <div className='header'>
       <ul className='list'>
         <li className='logo'>
-          <NavLink to="/"><i className="fas fa-camera fa-8x"></i></NavLink>
+          <NavLink to="/"><i className="fas fa-camera fa-8x" id='icon'></i></NavLink>
         </li>
         <li>
           <NavLink to="/spots/new" className='create-new-spot'>Create A New Spot</NavLink>

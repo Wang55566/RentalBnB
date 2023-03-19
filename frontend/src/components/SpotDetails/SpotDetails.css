@@ -1,46 +1,119 @@
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  color: rgb(46, 204, 46);
+  justify-content: flex-start;
+  align-items: flex-end
+}
+
+h2 {
+  margin-left: 50px;
+}
+
+
 .spot-pictures {
-  display: grid;
-  grid-template-columns:min-content;
-  grid-template-rows: min-content;
+  display: flex;
+  flex-wrap: wrap;
+  height:600px
+
 }
 
-img {
-  width:600px;
-  height:400px;
+.image1 {
+  height:400px
 }
 
-.optional2 {
- width: fit-content;
- grid-column-start: 2;
+.image2 {
+  height:200px
 }
 
-#image4 {
-  grid-column-start: 4
+.image3 {
+  height:200px
+}
+
+.image4 {
+  height:200px
+}
+
+image5 {
+  height:200px
+}
+
+
+.image2-image3 {
+  width:fit-content;
+  height: fit-content;
+}
+
+.image4-image5 {
+  width:fit-content;
+  height: fit-content;
+  display: flex;
 }
 
 .spot-content {
-  display:grid;
-  grid-template-columns: max-content;
   font-family: cursive;
-  margin-left: 20px;
+  color:rgb(39, 12, 20);
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.reserve-button {
-  position: absolute;
-  right:200px;
-  bottom:0px
+.host-name-spot-info {
+  margin-left:20px;
 }
 
 .reserve-box {
-  position:absolute;
-  right:200px;
-  font-style: cursive;
-  font-size: 20px;
-  font-weight: bold;
-  color:red
+  border: 5px solid black;
+  width:300px;
+  height:200px;
+  margin-left: 80px;
+  margin-top: 30px;
+  border-radius: 25px;
+  box-shadow:  6px 5px 1px rgba(0, 0, 255, .2);
+  background-color: aqua;
 }
 
-.reserve-detail-for-review {
+.review-dot-rating {
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+div.rating {
+  margin:0px;
+  display:flex
+}
+
+div.price {
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+div.reserve-button {
+  display:flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button {
+  font-size: 15px;
+  color:rgb(243, 218, 218);
+  background-color: rgb(77, 5, 5);
   font-family: cursive;
-  margin-left:200px;
+  border-radius:5px;
+  border:2px solid rgb(206, 166, 166);
+}
+
+@media (max-width: 925px) {
+  .image2-image3 {
+    width:fit-content;
+    height: fit-content;
+    display:flex;
+  }
+
+  .spot-pictures {
+    height:800px;
+  }
 }
