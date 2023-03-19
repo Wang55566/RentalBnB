@@ -63,9 +63,10 @@ router.get('/', async (req, res) => {
     // previewImage
     if(spot.SpotImages.length > 0) {
       for(let i=0; i<spot.SpotImages.length;i++){
-        if(spot.SpotImages[i].preview) {
-          spot.previewImage = spot.SpotImages[i].url;
-        }
+        // if(spot.SpotImages[i].preview) {
+        //   spot.previewImage = spot.SpotImages[i].url;
+        // }
+        spot.previewImage = spot.SpotImages[0].url;
       }
     }
     if(!spot.previewImage) {
@@ -125,7 +126,7 @@ router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res)
 
   const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
   const { user } = req;
-
+  console.log('previewimage:',previewImage)
   const spot = await Spot.create({
     address,
     city,
@@ -220,6 +221,7 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res) => {
   if(spot.ownerId === user.dataValues.id) {
 
     const { url, preview } = req.body;
+
     const image = await SpotImage.create({
       url,
       //preview,

@@ -24,8 +24,8 @@ const EditSpotForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    dispatch(readOneSpot(id))
     dispatch(readSpots())
+    dispatch(readOneSpot(id))
     const err = {};
     if(country.length < 1) {err.country = "Country is required"};
     if(address.length < 1) {err.address = "Address is required"};

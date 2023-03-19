@@ -29,6 +29,8 @@ const CreateSpotForm = () => {
   // Error Messages
   const [errors, setErrors] = useState({});
 
+  const [imageErrors, setImageErrors] = useState({});
+
   useEffect(() => {
 
       dispatch(readSpots())
@@ -46,30 +48,35 @@ const CreateSpotForm = () => {
       }
       if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
 
-      // const urlTwo = image2.split('.');
-      // const urlThree = image3.split('.');
-      // const urlFour = image4.split('.');
-      // const urlFive = image5.split('.');
+      const optional_error = {};
 
-      // if(!['jpg', 'jpeg', 'png'].includes(urlTwo[urlTwo.length - 1])) {
-      //   err.urlTwo = "Image URL needs to end in png or jpg (or jpeg)"
-      // }
-      // if(!['jpg', 'jpeg', 'png'].includes(urlThree[urlThree.length - 1])) {
-      //   err.urlThree = "Image URL needs to end in png or jpg (or jpeg)"
-      // }
-      // if(!['jpg', 'jpeg', 'png'].includes(urlFour[urlFour.length - 1])) {
-      //   err.urlFour = "Image URL needs to end in png or jpg (or jpeg)"
-      // }
-      // if(!['jpg', 'jpeg', 'png'].includes(urlFive[urlFive.length - 1])) {
-      //   err.urlFive = "Image URL needs to end in png or jpg (or jpeg)"
-      // }
+      const urlTwo = image2.split('.');
+      const urlThree = image3.split('.');
+      const urlFour = image4.split('.');
+      const urlFive = image5.split('.');
+
+      if(!['jpg', 'jpeg', 'png'].includes(urlTwo[urlTwo.length - 1])) {
+        optional_error.urlTwo = "Image URL needs to end in png or jpg (or jpeg)"
+      }
+      if(!['jpg', 'jpeg', 'png'].includes(urlThree[urlThree.length - 1])) {
+        optional_error.urlThree = "Image URL needs to end in png or jpg (or jpeg)"
+      }
+      if(!['jpg', 'jpeg', 'png'].includes(urlFour[urlFour.length - 1])) {
+        optional_error.urlFour = "Image URL needs to end in png or jpg (or jpeg)"
+      }
+      if(!['jpg', 'jpeg', 'png'].includes(urlFive[urlFive.length - 1])) {
+        optional_error.urlFive = "Image URL needs to end in png or jpg (or jpeg)"
+      }
+
+      setImageErrors(optional_error)
 
       setErrors(err);
 
-  }, [country, address, city, state, description, name, price, , previewImage, dispatch]);
+  }, [country, address, city, state, description, name, price, , previewImage, image2, image3, image4, image5, dispatch]);
 
   useEffect(() => {
     setErrors({});
+    setImageErrors({})
   },[])
 
 
@@ -117,6 +124,10 @@ const CreateSpotForm = () => {
         name,
         price,
         previewImage,
+        image2,
+        image3,
+        image4,
+        image5,
         lat:50,
         lng:100
       }
@@ -229,7 +240,7 @@ const CreateSpotForm = () => {
           />
         </label>
 
-        <p className='errors'>{errors.urlTwo}</p>
+        <p className='errors'>{imageErrors.urlTwo}</p>
         <label>
         Image
           <input
@@ -239,7 +250,7 @@ const CreateSpotForm = () => {
             onChange={updateImage2}
           />
         </label>
-        <p className='errors'>{errors.urlThree}</p>
+        <p className='errors'>{imageErrors.urlThree}</p>
         <label>
         Image
           <input
@@ -249,7 +260,7 @@ const CreateSpotForm = () => {
             onChange={updateImage3}
           />
         </label>
-        <p className='errors'>{errors.urlFour}</p>
+        <p className='errors'>{imageErrors.urlFour}</p>
         <label>
         Image
           <input
@@ -259,7 +270,7 @@ const CreateSpotForm = () => {
             onChange={updateImage4}
           />
         </label>
-        <p className='errors'>{errors.urlFive}</p>
+        <p className='errors'>{imageErrors.urlFive}</p>
         <label>
         Image
           <input

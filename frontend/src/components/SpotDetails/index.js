@@ -28,7 +28,6 @@ const SpotDetails = () => {
   useEffect(() => {
      dispatch(readOneSpot(id));
   //   dispatch(readReviews(spot.id));
-    console.log(spot.previewImage)
   },[dispatch]);
 
   // useEffect(() => {
