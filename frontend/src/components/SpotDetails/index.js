@@ -28,6 +28,7 @@ const SpotDetails = () => {
   useEffect(() => {
      dispatch(readOneSpot(id));
   //   dispatch(readReviews(spot.id));
+    console.log(spot.previewImage)
   },[dispatch]);
 
   // useEffect(() => {
@@ -42,9 +43,10 @@ const SpotDetails = () => {
       <h2>{spot.city}, {spot.state}, {spot.country}</h2>
       <div className='spot-pictures'>
         <div className='image1'>
-      {spot && Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
+        {spot && Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
         <img key={img.id} src= {img.url} alt='' width='600px' height='400px'/>
         )}
+        {/* {!spot.SpotImages? <img src= {spot.previewImage} alt='' width='600px' height='400px'/> : ""} */}
         {/* {spot.previewImage ? <img className="image_placeholder" src= {spot.previewImage} alt=''/> : <img className="image_placeholder"/>} */}
         </div>
         <div className='optional2'>
