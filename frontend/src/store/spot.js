@@ -67,10 +67,7 @@ export const createNewSpot = (data) => async (dispatch) => {
   if(response.ok) {
 
     const newSpot = await response.json();
-    // Image
-    // const ImageArray = [];
-    // ImageArray.push(data.previewImage);
-
+    // previewImage
     const previewImage = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
         method: "POST",
         headers: {
@@ -79,8 +76,21 @@ export const createNewSpot = (data) => async (dispatch) => {
         body: JSON.stringify({
           url : data.previewImage,
         })
-      })
-      const previewImage1 = await previewImage.json()
+    })
+    const previewImage1 = await previewImage.json()
+
+    // Other images
+    // const image2 = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     url : data.image2,
+    //   })
+    // })
+    // const imageTwo = await previewImage.json()
+
     //
     return dispatch(addSpot(newSpot, previewImage1))
   }
@@ -137,7 +147,6 @@ const spotReducer = (state = initialSate, action) => {
         ...state, singleSpot: {...action.payload}
       }
     case ADD:
-      console.log(action.payload)
       const newState = {...state, allSpots: {...state.allSpots}};
       const id = action.payload.id;
       newState.allSpots[id] = action.payload;

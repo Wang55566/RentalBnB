@@ -180,11 +180,12 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
     // previewImage
     if(spot.SpotImages.length > 0) {
-      for(let i=0; i<spot.SpotImages.length;i++){
-        if(spot.SpotImages[i].preview) {
-          spot.previewImage = spot.SpotImages[i].url;
-        }
-      }
+      // for(let i=0; i<spot.SpotImages.length;i++){
+      //   if(spot.SpotImages[i].preview) {
+      //     spot.previewImage = spot.SpotImages[i].url;
+      //   }
+      // }
+      spot.previewImage = spot.SpotImages[0].url;
     }
     if(!spot.previewImage) {
       spot.previewImage = '';
