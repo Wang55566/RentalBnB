@@ -18,16 +18,17 @@ import { readReviews } from "../../store/review";
 const SpotDetails = () => {
 
   const dispatch = useDispatch();
-  const { spotId } = useParams();
+  const { id } = useParams();
 
   const spot = useSelector(state => state.spot.singleSpot);
   const review = useSelector(state => state.reviews);
+  const currentUser = useSelector(state => state.session.user);
 
 
-  // useEffect(() => {
-  //   dispatch(readOneSpot(spotId));
+  useEffect(() => {
+     dispatch(readOneSpot(id));
   //   dispatch(readReviews(spot.id));
-  // },[]);
+  },[dispatch]);
 
   // useEffect(() => {
   //   console.log("spot:", spot);
@@ -84,9 +85,9 @@ const SpotDetails = () => {
               />
             </div>
       </div>
-      <div className='post-review-button'>
+      {/* <div className='post-review-button'>
       <PostReview/>
-      </div>
+      </div> */}
       <div>
       </div>
     </>

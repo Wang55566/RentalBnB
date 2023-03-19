@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import { readReviews } from "../../store/review";
 
-import {readSpots } from '../../store/spot';
+import { readOneSpot, readSpots } from '../../store/spot';
 
 import './review.css';
 
@@ -15,6 +15,8 @@ import OpenModalButton from '../OpenModalButton';
 import DeleteReviewModal from "../DeleteReviewModal";
 
 import { readOneReview } from "../../store/user";
+
+import PostReview from '../PostReview';
 
 const ReviewsByReviewId = () => {
 
@@ -25,16 +27,19 @@ const ReviewsByReviewId = () => {
   const spotReviews = useSelector(state => state.reviews)
   const spot = useSelector(state => state.spot.singleSpot);
   const currentUser = useSelector(state => state.session.user);
+
+  const checkReview = Object.values(spotReviews.reviews).some( (review) =>
+    review?.User?.id === currentUser?.id
+  )
+
   const onClickDelete = async () => {
 
     await dispatch(readOneReview(spot.id));
-
   }
 
   useEffect(() => {
     dispatch(readReviews(id));
-
-  },[spot]);
+  },[]);
 
   return (
     <div className='reviews'>
@@ -50,6 +55,8 @@ const ReviewsByReviewId = () => {
             <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
         <div>
 
+        <div className='post-review-button'>{!currentUser || currentUser?.id === spot.Owner?.id || checkReview === true ? "" : <PostReview/>}</div>
+        {/* <div><PostReview/></div> */}
 
         </div>
       </div>
