@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
       }
     }
     if(!spot.previewImage) {
-      spot.previewImage = 'Preview is not available'
+      spot.previewImage = ''
     }
 
     delete spot.SpotImages;
@@ -123,7 +123,7 @@ const validateCreateASpot = [
 // Require Authentication: true
 router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res) => {
 
-  const { address, city, state, country, lat, lng, name, description, price } = req.body
+  const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
   const { user } = req;
 
   const spot = await Spot.create({
@@ -136,7 +136,8 @@ router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res)
     name,
     description,
     price,
-    ownerId : user.dataValues.id
+    ownerId : user.dataValues.id,
+    previewImage
   });
 
   res.json(spot)
@@ -185,7 +186,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
       }
     }
     if(!spot.previewImage) {
-      spot.previewImage = 'Preview is not available'
+      spot.previewImage = '';
     }
 
     delete spot.SpotImages;
@@ -221,14 +222,15 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res) => {
     const { url, preview } = req.body;
     const image = await SpotImage.create({
       url,
-      preview,
+      //preview,
       spotId: +req.params.spotId
     })
 
     res.json({
       id: image.id,
       url:image.url,
-      preview: image.preview
+      //preview: image.preview
+
     });
   } else {
     const err = new Error("Forbidden");

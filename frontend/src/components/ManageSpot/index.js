@@ -26,7 +26,7 @@ const spotsByUser = useSelector((state) => {
 
 return (
   <>
-  <h1>Manage Your Spots</h1>
+  <h1>Manage Spots</h1>
   <div>
     {Object.values(spotsByUser).length !== 0 ? "" : <NavLink to="/spots/new" className='create-spot'>Create A New Spot</NavLink>}
   </div>
@@ -35,7 +35,7 @@ return (
       return (
       <div key={spot.id} className='spots-holder'>
         <NavLink to={`/spots/${spot.id}`}>
-            <img className="image_placeholder"/>
+        {spot.previewImage ? <img className="image_placeholder" src= {spot.previewImage} alt=''/> : <img className="image_placeholder"/>}
         </NavLink>
         <div className='rating'>
             {spot.avgRating ? <span className="fa fa-star">{spot.avgRating}</span>

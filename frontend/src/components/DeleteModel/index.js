@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import {deleteASpot, readSpotsByUser} from '../../store/spot';
 
+import './DeleteSpot.css'
+
 const DeleteSpotModal = () => {
 
   const dispatch = useDispatch();
-  const history = useHistory();
   const {closeModal} = useModal();
 
   const spot = useSelector(state => state.spot.singleSpot)

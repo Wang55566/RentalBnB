@@ -39,7 +39,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
       }
     }
     if(!review.Spot.previewImage) {
-      review.Spot.previewImage = 'Preview is not available'
+      review.Spot.previewImage = ''
     }
 
     delete review.Spot.SpotImages;

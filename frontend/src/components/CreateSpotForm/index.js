@@ -116,6 +116,7 @@ const CreateSpotForm = () => {
         description,
         name,
         price,
+        previewImage,
         lat:50,
         lng:100
       }
@@ -141,6 +142,7 @@ const CreateSpotForm = () => {
         Country
           <input
             type ="text"
+            placeholder='Country'
             value={country}
             onChange={updateCountry}
           />
@@ -150,6 +152,7 @@ const CreateSpotForm = () => {
         Street Address
           <input
             type ="text"
+            placeholder='Address'
             value={address}
             onChange={updateAddress}
           />
@@ -159,6 +162,7 @@ const CreateSpotForm = () => {
         City
           <input
             type ="text"
+            placeholder='City'
             value={city}
             onChange={updateCity}
           />
@@ -168,6 +172,7 @@ const CreateSpotForm = () => {
         State
           <input
             type ="text"
+            placeholder='State'
             value={state}
             onChange={updateState}
           />
@@ -176,37 +181,40 @@ const CreateSpotForm = () => {
         <h3>Mention the best features of your space, any special amentities like<br/>
             fast wif or parking, and what you love about the neighborhood.
         </h3>
-        <p className='errors'>{errors.description || " "}</p>
         <label>
         Description
           <textarea
+            placeholder='Please write at least 30 characters'
             value={description}
             onChange={updateDescription}
           />
+        <p className='errors'>{errors.description || " "}</p>
         </label>
         <h2>Create a title for your spot</h2>
         <h3>Mention the best features of your space, any special amentities like<br>
         </br>fast wif or parking, and what you love about the neighborhood</h3>
-        <p className='errors'>{errors.name}</p>
         <label>
         Name
           <input
             type ="text"
+            placeholder='Name of your spot'
             value={name}
             onChange={updateName}
           />
+        <p className='errors'>{errors.name}</p>
         </label>
         <h2>Set a base price for your spot</h2>
         <h3>Competitive pricing can help your listing stand out and rank higher<br>
         </br>in search results.</h3>
-        <p className='errors'>{errors.price}</p>
         <label>
         Price
           <input
             type ="text"
+            placeholder='Price per night (USD)'
             value={price}
             onChange={updatePrice}
           />
+        <p className='errors'>{errors.price}</p>
         </label>
         <h2>Liven up your spot with photos</h2>
         <h3>Submit a link to at least one photo to publish your spot.</h3>
@@ -215,6 +223,7 @@ const CreateSpotForm = () => {
         PreviewImage
           <input
             type ="text"
+            placeholder='Preview Image URL'
             value={previewImage}
             onChange={updatePreivewImage}
           />
@@ -225,6 +234,7 @@ const CreateSpotForm = () => {
         Image
           <input
             type ="text"
+            placeholder="Image URL"
             value={image2}
             onChange={updateImage2}
           />
@@ -234,6 +244,7 @@ const CreateSpotForm = () => {
         Image
           <input
             type ="text"
+            placeholder="Image URL"
             value={image3}
             onChange={updateImage3}
           />
@@ -243,6 +254,7 @@ const CreateSpotForm = () => {
         Image
           <input
             type ="text"
+            placeholder="Image URL"
             value={image4}
             onChange={updateImage4}
           />
@@ -252,6 +264,7 @@ const CreateSpotForm = () => {
         Image
           <input
             type ="text"
+            placeholder="Image URL"
             value={image5}
             onChange={updateImage5}
           />

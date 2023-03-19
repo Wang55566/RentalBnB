@@ -35,7 +35,8 @@ p.price {
 
 .update-delete-button {
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-start;
+  margin-left: 30px;
 }
 .update-botton {
   text-decoration-line: none;
@@ -48,6 +49,17 @@ p.price {
 
 .delete-botton {
   height:fit-content;
+}
+
+.create-spot {
+  font-size: 15px;
+  font-weight: bolder;
+  font-family: cursive;
+  color:brown;
+  text-decoration-line: none;
+  background-color: rgb(237, 225, 227);
+  box-shadow: 8px 3px 3px red;
+  margin:40px;
 }
 
 

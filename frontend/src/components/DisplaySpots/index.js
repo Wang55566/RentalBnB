@@ -15,6 +15,8 @@ const AllSpots = () => {
     return state.spot.allSpots
   })
 
+  console.log(allSpots)
+
   useEffect(() => {
     dispatch(readSpots());
   }, [dispatch]);
@@ -25,7 +27,7 @@ const AllSpots = () => {
         return (
         <div key={spot.id} className='spots-holder'>
           <NavLink to={`/spots/${spot.id}`}>
-              <img className="image_placeholder" alt=''/>
+              {spot.previewImage ? <img className="image_placeholder" src= {spot.previewImage} alt=''/> : <img className="image_placeholder"/>}
           </NavLink>
           <div className='rating'>
             {spot.avgRating ? <span className="fa fa-star">{spot.avgRating}</span>

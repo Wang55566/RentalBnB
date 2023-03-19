@@ -16,9 +16,21 @@ h1 {
   margin-left:1rem;
 }
 
-.year {
+.year-month {
   margin-left:1rem;
 }
 .comment {
   margin-left:1rem;
+}
+
+.reviews {
+  font-family: cursive;
+}
+
+.be-the-first {
+  margin-left:40px;
+}
+
+.reserve-detail {
+  display: flex;
 }

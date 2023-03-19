@@ -6,12 +6,14 @@ import spotReducer from "./spot";
 
 import spot from './spot';
 import reviews from './review'
+import user from './user'
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   spot,
-  reviews
+  reviews,
+  user
 });
 
 let enhancer;

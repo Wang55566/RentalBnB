@@ -35,11 +35,8 @@ const EditSpotForm = () => {
     if(name.length < 1) {err.name = "Name is required"};
     if(price.length < 1) {err.price = "Price is required"};
     setErrors(err);
-  },[country, address, city, state, description, name, price, dispatch]);
+  },[country, address, city, state, description, name, price]);
 
-  useEffect(() => {
-    setErrors({})
-  },[]);
 
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);

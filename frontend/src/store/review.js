@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const LOAD = "reviews/LOAD";
 const CREATE = 'review/CREATE';
+const REMOVE = 'review/REMOVE';
 
 const load = (payload) => ({
   type: LOAD,
@@ -9,7 +10,12 @@ const load = (payload) => ({
 });
 
 const create = (payload) => ({
-  type: LOAD,
+  type: CREATE,
+  payload
+})
+
+const remove = (payload) => ({
+  type: REMOVE,
   payload
 })
 
@@ -25,8 +31,6 @@ export const readReviews = (id) => async (dispatch) => {
 
 export const createReview = (data, id) => async (dispatch) => {
 
-  console.log('id:', id);
-  console.log('data:', data);
   const response = await csrfFetch(`/api/spots/${id}/reviews`, {
     method: "POST",
     headers: {
@@ -37,6 +41,20 @@ export const createReview = (data, id) => async (dispatch) => {
   if(response.ok) {
     const newReview = await response.json();
     return dispatch(create(newReview))
+  }
+}
+
+export const removeReview = (reviewId) => async (dispatch) => {
+
+  console.log(reviewId)
+
+  const response = await csrfFetch(`/api/reviews/${reviewId}`,
+  {
+    method: "delete",
+  })
+
+  if (response.ok) {
+    dispatch(remove(reviewId))
   }
 }
 
@@ -53,8 +71,15 @@ const reviewReducer = (state = initialSate, action) => {
         ...state, reviews: {...reviews}
       };
     case CREATE:
-      const newReview = {};
-      return null
+      const newReview = {...state, reviews: {...state.reviews}};
+      const id = action.payload.id;
+      newReview.reviews[id] = action.payload;
+      return newReview;
+    case REMOVE:
+      const removeReview = {...state, reviews: {...state.reviews}};
+      delete removeReview.reviews[action.payload.id];
+      return removeReview;
+
     default: return state;
   }
 }

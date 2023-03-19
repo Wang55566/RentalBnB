@@ -1,22 +1,46 @@
-.spot-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-family: cursive;
-  color:blueviolet;
+.spot-pictures {
+  display: grid;
+  grid-template-columns:min-content;
+  grid-template-rows: min-content;
 }
 
-.image_placeholder {
-  margin:20px
+img {
+  width:600px;
+  height:400px;
+}
+
+.optional2 {
+ width: fit-content;
+ grid-column-start: 2;
+}
+
+#image4 {
+  grid-column-start: 4
 }
 
 .spot-content {
   display:grid;
-  grid-template-columns: 50% 50% ;
+  grid-template-columns: max-content;
   font-family: cursive;
-  border-bottom: 1px dotted rgb(249, 17, 17);
+  margin-left: 20px;
 }
 
-.reserve-detail {
-  display: inline-flexbox;
+.reserve-button {
+  position: absolute;
+  right:200px;
+  bottom:0px
+}
+
+.reserve-box {
+  position:absolute;
+  right:200px;
+  font-style: cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color:red
+}
+
+.reserve-detail-for-review {
+  font-family: cursive;
+  margin-left:200px;
 }
