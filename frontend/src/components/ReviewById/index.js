@@ -24,7 +24,7 @@ const ReviewsByReviewId = () => {
 
   const spotReviews = useSelector(state => state.reviews)
   const spot = useSelector(state => state.spot.singleSpot);
-
+  const currentUser = useSelector(state => state.session.user);
   const onClickDelete = async () => {
 
     await dispatch(readOneReview(spot.id));
@@ -33,6 +33,7 @@ const ReviewsByReviewId = () => {
 
   useEffect(() => {
     dispatch(readReviews(id));
+
   },[spot]);
 
   return (
@@ -66,19 +67,22 @@ const ReviewsByReviewId = () => {
             <div className='comment'>
               {review.review}
             </div>
+
+            { currentUser?.id === review?.User?.id ?
+            <div className='delete-review-botton'>
+            <OpenModalButton
+              buttonText="Delete"
+              onButtonClick={onClickDelete}
+              modalComponent={<DeleteReviewModal />}
+            />
+            </div> : <div></div>}
+
           </div>
-      )}
+        )}
       </div>
          <div className='be-the-first'>
            {!Object.values(spotReviews.reviews).length ? <h2>Be the frst to post a review!</h2> : ""}
          </div>
-       <div className='delete-review-botton'>
-              <OpenModalButton
-                buttonText="Delete"
-                onButtonClick={onClickDelete}
-                modalComponent={<DeleteReviewModal />}
-              />
-      </div>
     </div>
   )
 }

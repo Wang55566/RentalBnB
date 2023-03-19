@@ -24,11 +24,15 @@ const SpotDetails = () => {
   const review = useSelector(state => state.reviews);
 
 
+  // useEffect(() => {
+  //   dispatch(readOneSpot(spotId));
+  //   dispatch(readReviews(spot.id));
+  // },[]);
 
-  useEffect(() => {
-    dispatch(readOneSpot(spotId));
-    //dispatch(readReviews(spot.id));
-  },[]);
+  // useEffect(() => {
+  //   console.log("spot:", spot);
+  //   console.log("review:", review);
+  // })
 
   return (
     <>
@@ -54,21 +58,21 @@ const SpotDetails = () => {
 
     </div>
       <div className='spot-content'>
-      <p className ='host-text'>Host By {Object.values(spot).length && spot.Owner.firstName} {Object.values(spot).length && spot.Owner.lastName}</p>
+      <p className ='host-text'>Host By {Object.values(spot).length && spot?.Owner?.firstName} {Object.values(spot)?.length && spot?.Owner?.lastName}</p>
       <div className='reserve-box'>
         <div className='reserve-detail'>
-          <div className='review-numbers'>{spot.numReviews > 0 ? `${spot.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
+          <div className='review-numbers'>{spot?.numReviews > 0 ? `${spot?.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
           <div>
-            <div>{spot.numReviews === 1 ? `review`: ''}</div>
-            <div>{spot.numReviews > 1 ? `reviews`: ''}</div>
-            <div>{spot.numReviews === 0 ?  "": ""}</div>
+            <div>{spot?.numReviews === 1 ? `review`: ''}</div>
+            <div>{spot?.numReviews > 1 ? `reviews`: ''}</div>
+            <div>{spot?.numReviews === 0 ?  "": ""}</div>
           </div>
-            <div className='dot'>{spot.numReviews === 0 ? "" :"·"}</div>
+            <div className='dot'>{spot?.numReviews === 0 ? "" :"·"}</div>
             <div className='rating'><span className="fa fa-star"></span>{spot?.avgStarRating}</div>
         <div>
 
           </div>
-          <div className='price'>${spot.price} night</div>
+          <div className='price'>${spot?.price} night</div>
         </div>
       </div>
       <p>{spot.description}</p>

@@ -19,14 +19,12 @@ const DeleteReviewModal = () => {
 
   const onClickYes = async () => {
 
-    console.log(userReview)
-
     await dispatch(removeReview(Object.values(userReview)[0].id))
 
     await dispatch(readReviews(Object.values(userReview)[0].Spot.id));
 
     await dispatch(readOneSpot(Object.values(userReview)[0].Spot.id));
-    
+
     closeModal();
   }
 
