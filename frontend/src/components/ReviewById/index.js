@@ -26,6 +26,12 @@ const ReviewsByReviewId = () => {
   const spot = useSelector(state => state.spot.singleSpot);
   const currentUser = useSelector(state => state.session.user);
 
+  // sort
+  const sorted = Object.values(spotReviews?.reviews).sort((a,b) => Date.parse(b?.createdAt) - Date.parse(a?.createdAt) )
+
+
+  //
+
   const checkReview = Object.values(spotReviews.reviews).some( (review) =>
     review?.User?.id === currentUser?.id
   )
@@ -59,7 +65,7 @@ const ReviewsByReviewId = () => {
       </div>
 
       <div className='review-content'>
-      {Object.values(spotReviews).length && Object.values(spotReviews.reviews).map((review) =>
+      {Object.values(spotReviews).length && sorted.map((review) =>
           <div key={review.id} className='review-box'>
             <div className='firstName'>
               <span>{review?.User?.firstName}</span>

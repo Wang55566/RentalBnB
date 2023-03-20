@@ -64,7 +64,7 @@ const SpotDetails = () => {
           <div className='reserve-review-rating'>
             <div>{spot?.numReviews > 0 ? `${spot?.numReviews}` : <span className="fa fa-star">NEW</span>}</div>
           </div>
-          <div claaName='review'>
+          <div className='review'>
             <div>{spot?.numReviews === 1 ? `review`: ''}</div>
             <div>{spot?.numReviews > 1 ? `reviews`: ''}</div>
             <div>{spot?.numReviews === 0 ?  "": ""}</div>
