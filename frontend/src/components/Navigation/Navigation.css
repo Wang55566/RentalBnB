@@ -36,27 +36,26 @@
   position: absolute;
   right:200px;
   top: 100px;
-  font-size: 15px;
   font-weight: bolder;
   font-family: cursive;
   color:rgb(7, 0, 0);
   text-decoration-line: none;
   background-color: rgb(237, 225, 227);
   box-shadow: 8px 3px 3px rgb(97, 48, 48);
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
-button {
-  padding: 0px 0px;
-  background-color: rgb(224, 225, 228);
-}
-
-.current-spot-button {
+.create-new-spot:hover {
+  position: absolute;
+  right:200px;
+  top: 100px;
+  font-weight: bolder;
+  font-family: cursive;
+  color:rgb(250, 241, 241);
   text-decoration-line: none;
-  box-shadow: 8px 3px 3px red;
-  margin-bottom: 20px;
-  color: red;
-  background-color: pink;
+  background-color: rgb(18, 3, 5);
+  box-shadow: 8px 3px 3px rgb(159, 39, 39);
+  border-radius: 6px;
 }
 
 .log-in-button {
@@ -64,20 +63,30 @@ button {
 }
 
 a.current-spot-button {
-  border-radius: 10px;
+  text-decoration-line: none;
   color:rgb(7, 0, 0);
   background-color: rgb(237, 225, 227);
   box-shadow: 8px 3px 3px rgb(97, 48, 48);
   font-weight: bolder;
   font-family: cursive;
+  border-radius: 6px;
+}
+
+a.current-spot-button:hover {
+  text-decoration-line: none;
+  color:rgb(235, 223, 223);
+  background-color: rgb(21, 6, 9);
+  box-shadow: 8px 3px 3px rgb(127, 12, 12);
+  font-weight: bolder;
+  font-family: cursive;
+  border-radius: 6px;
 }
 
 @media (max-width: 710px) {
 
-  a.create-new-spot {
+  a.create-new-spot, a.create-new-spot:hover {
     position:absolute;
     right:200px;
     top: 250px;
-
   }
 }

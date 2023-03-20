@@ -39,20 +39,37 @@ p.price {
   margin-left: 30px;
 }
 .update-botton {
+  width:60px;
+  height:22px;
   text-decoration-line: none;
-  box-shadow: 8px 3px 3px red;
+  box-shadow: 8px 2px 5px rgb(70, 14, 14);
   margin-bottom: 20px;
-  color: rgb(7, 1, 1);
-  background-color: rgb(154, 197, 34);
   margin-right: 20px;
-  border-radius: 4px;
+  color: rgb(243, 218, 218);
+  background-color: rgb(8, 0, 0);
+  border-radius: 5px;
+  border: 2px solid rgb(206, 166, 166);
   font-family: cursive;
-  font-weight: bold;
-  font-size: 14.5px;
+  font-size: 15px;
+  display:flex;
+  justify-content: center;
 }
 
-.delete-botton {
-  height:fit-content;
+.update-botton:hover {
+  width:60px;
+  height:22px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  text-decoration-line: none;
+  color:rgb(34, 5, 5);
+  background-color: rgb(225, 209, 209);
+  border:2px solid rgb(18, 5, 5);
+  box-shadow: 8px 2px 5px rgb(230, 8, 8);
+  border-radius: 6px;
+  font-family: cursive;
+  font-size: 15px;
+  display:flex;
+  justify-content: center;
 }
 
 .create-spot {

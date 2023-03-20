@@ -100,7 +100,7 @@ div.reserve-button {
   margin-top: 50px;
 }
 
-button {
+button, button:hover:disabled, button[disabled] {
   font-size: 15px;
   color:rgb(243, 218, 218);
   background-color: rgb(8, 0, 0);
@@ -108,6 +108,16 @@ button {
   border-radius:5px;
   border:2px solid rgb(206, 166, 166);
   box-shadow: 8px 2px 5px rgb(70, 14, 14);
+}
+
+button:hover {
+  font-size: 15px;
+  color:rgb(34, 5, 5);
+  background-color: rgb(225, 209, 209);
+  font-family: cursive;
+  border-radius:5px;
+  border:2px solid rgb(18, 5, 5);
+  box-shadow: 8px 2px 5px rgb(230, 8, 8);
 }
 
 @media (max-width: 925px) {
