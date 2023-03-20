@@ -90,7 +90,7 @@ const ReviewsByReviewId = () => {
         )}
       </div>
          <div className='be-the-first'>
-           {!Object.values(spotReviews.reviews).length ? <h2>Be the frst to post a review!</h2> : ""}
+           {!Object.values(spotReviews.reviews).length ? <h2>Be the first to post a review!</h2> : ""}
          </div>
     </div>
   )
