@@ -1,0 +1,143 @@
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  color: rgb(46, 204, 46);
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-left: 50px;
+}
+
+
+.spot-pictures {
+  display: flex;
+  flex-wrap: wrap;
+  height:600px
+
+}
+
+.image1 {
+  height:400px
+}
+
+.image2 {
+  height:200px
+}
+
+.image3 {
+  height:200px
+}
+
+.image4 {
+  height:200px
+}
+
+image5 {
+  height:200px
+}
+
+
+.image2-image3 {
+  width:fit-content;
+  height: fit-content;
+}
+
+.image4-image5 {
+  width:fit-content;
+  height: fit-content;
+  display: flex;
+}
+
+.spot-content {
+  font-family: cursive;
+  color:rgb(39, 12, 20);
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: thick double #32a1ce;
+}
+
+.host-name-spot-info {
+  margin-left:20px;
+}
+
+.reserve-box {
+  border: 5px solid black;
+  width:300px;
+  height:200px;
+  margin-left: 250px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  box-shadow:  6px 5px 1px rgba(0, 0, 255, .2);
+  background-color: aqua;
+}
+
+.review-dot-rating {
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+div.rating {
+  margin:0px;
+  display:flex
+}
+
+div.price {
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+div.reserve-button {
+  display:flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button, button:hover:disabled, button[disabled] {
+  font-size: 15px;
+  color:rgb(243, 218, 218);
+  background-color: rgb(8, 0, 0);
+  font-family: cursive;
+  border-radius:5px;
+  border:2px solid rgb(206, 166, 166);
+  box-shadow: 8px 2px 5px rgb(70, 14, 14);
+}
+
+button:hover {
+  font-size: 15px;
+  color:rgb(34, 5, 5);
+  background-color: rgb(225, 209, 209);
+  font-family: cursive;
+  border-radius:5px;
+  border:2px solid rgb(18, 5, 5);
+  box-shadow: 8px 2px 5px rgb(230, 8, 8);
+}
+
+@media (max-width: 925px) {
+  .image2-image3 {
+    width:fit-content;
+    height: fit-content;
+    display:flex;
+  }
+
+  .spot-pictures {
+    height:800px;
+  }
+}
+
+@media (min-width: 1517px) {
+  .image4-image5 {
+    display:block;
+  }
+
+  .spot-pictures {
+    height: 400px;
+  }
+}

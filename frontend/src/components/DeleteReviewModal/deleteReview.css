@@ -1,0 +1,13 @@
+.delete-yes {
+  background-color: red;
+  font-family: cursive;
+  width:100px;
+  height:50px
+}
+
+.delete-no {
+  background-color: grey;
+  font-family: cursive;
+  width:100px;
+  height:50px
+}

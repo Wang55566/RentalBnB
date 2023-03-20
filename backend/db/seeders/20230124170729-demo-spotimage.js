@@ -13,29 +13,29 @@ module.exports = {
     options.tableName = 'SpotImages';
     return queryInterface.bulkInsert(options, [
         {
-          url: "spotimage1.com",
+          url: "https://hips.hearstapps.com/hmg-prod/images/bojnice-castle-1603142898.jpg?crop=1.00xw:0.752xh;0,0.0240xh&resize=1200:*",
           preview: true,
           spotId: 3
         },
         {
-          url: "spotimage2.com",
+          url: "https://hips.hearstapps.com/hmg-prod/images/bojnice-castle-1603142898.jpg?crop=1.00xw:0.752xh;0,0.0240xh&resize=1200:*",
           preview: true,
           spotId: 2
         },
         {
-          url: "spotimage3.com",
-          preview: false,
+          url: "https://hips.hearstapps.com/hmg-prod/images/bojnice-castle-1603142898.jpg?crop=1.00xw:0.752xh;0,0.0240xh&resize=1200:*",
+          preview: true,
           spotId: 1
         },
         {
-          url: "spotimage4.com",
-          preview: false,
-          spotId: 2
-        },
-        {
-          url: "spotimage5.com",
+          url: "https://hips.hearstapps.com/hmg-prod/images/bojnice-castle-1603142898.jpg?crop=1.00xw:0.752xh;0,0.0240xh&resize=1200:*",
           preview: true,
           spotId: 5
+        },
+        {
+          url: "https://hips.hearstapps.com/hmg-prod/images/bojnice-castle-1603142898.jpg?crop=1.00xw:0.752xh;0,0.0240xh&resize=1200:*",
+          preview: true,
+          spotId: 4
         }
       ], {});
     },

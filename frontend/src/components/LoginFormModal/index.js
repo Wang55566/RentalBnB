@@ -19,13 +19,20 @@ function LoginFormModal() {
       .catch(
         async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+          if (data && data.errors){
+            setErrors(Object.values(data.errors));
+          }
         }
       );
   };
 
+  const demoUser = async () => {
+    await dispatch (sessionActions.login({ credential: "FakeUser4", password:"password4"}));
+    closeModal()
+  }
+
   return (
-    <>
+    <div className='login-form'>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -51,9 +58,11 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
       </form>
-    </>
+
+        <button onClick={demoUser}>Log in as Demo User</button>
+    </div>
   );
 }
 

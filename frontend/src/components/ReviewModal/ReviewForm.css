@@ -1,0 +1,34 @@
+#review {
+  width: 100px;
+  height:100px;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row-reverse;
+  width: fit-content;
+}
+
+.stars .fa:hover{
+  color:orange;
+}
+
+#star1:hover ~.fa{
+  color:orange;
+}
+
+#star2:hover ~.fa{
+  color:orange;
+}
+
+#star3:hover ~.fa{
+  color:orange;
+}
+
+#star4:hover ~.fa{
+  color:orange;
+}
+
+#star5:hover ~.fa{
+  color:orange;
+}

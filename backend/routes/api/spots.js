@@ -38,8 +38,8 @@ router.get('/', async (req, res) => {
       // avgRating
       {model: Review}
     ],
-    limit: size,
-    offset: size * (page - 1)
+    // limit: size,
+    // offset: size * (page - 1)
   });
 
   const spotsArr = [];
@@ -63,13 +63,14 @@ router.get('/', async (req, res) => {
     // previewImage
     if(spot.SpotImages.length > 0) {
       for(let i=0; i<spot.SpotImages.length;i++){
-        if(spot.SpotImages[i].preview) {
-          spot.previewImage = spot.SpotImages[i].url;
-        }
+        // if(spot.SpotImages[i].preview) {
+        //   spot.previewImage = spot.SpotImages[i].url;
+        // }
+        spot.previewImage = spot.SpotImages[0].url;
       }
     }
     if(!spot.previewImage) {
-      spot.previewImage = 'Preview is not available'
+      spot.previewImage = ''
     }
 
     delete spot.SpotImages;
@@ -77,8 +78,8 @@ router.get('/', async (req, res) => {
 
     res.json({
       Spots: spotsArr,
-      page: page,
-      size: size
+      // page: page,
+      // size: size
     });
 })
 
@@ -119,13 +120,13 @@ const validateCreateASpot = [
   handleValidationErrors
 ];
 
-// Creat A Spot
+// Create A Spot
 // Require Authentication: true
 router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res) => {
 
-  const { address, city, state, country, lat, lng, name, description, price } = req.body
+  const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
   const { user } = req;
-
+  console.log('previewimage:',previewImage)
   const spot = await Spot.create({
     address,
     city,
@@ -136,7 +137,8 @@ router.post('/', restoreUser, requireAuth, validateCreateASpot, async (req, res)
     name,
     description,
     price,
-    ownerId : user.dataValues.id
+    ownerId : user.dataValues.id,
+    previewImage
   });
 
   res.json(spot)
@@ -178,14 +180,15 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
     // previewImage
     if(spot.SpotImages.length > 0) {
-      for(let i=0; i<spot.SpotImages.length;i++){
-        if(spot.SpotImages[i].preview) {
-          spot.previewImage = spot.SpotImages[i].url;
-        }
-      }
+      // for(let i=0; i<spot.SpotImages.length;i++){
+      //   if(spot.SpotImages[i].preview) {
+      //     spot.previewImage = spot.SpotImages[i].url;
+      //   }
+      // }
+      spot.previewImage = spot.SpotImages[0].url;
     }
     if(!spot.previewImage) {
-      spot.previewImage = 'Preview is not available'
+      spot.previewImage = '';
     }
 
     delete spot.SpotImages;
@@ -219,16 +222,18 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res) => {
   if(spot.ownerId === user.dataValues.id) {
 
     const { url, preview } = req.body;
+
     const image = await SpotImage.create({
       url,
-      preview,
+      //preview,
       spotId: +req.params.spotId
     })
 
     res.json({
       id: image.id,
       url:image.url,
-      preview: image.preview
+      //preview: image.preview
+
     });
   } else {
     const err = new Error("Forbidden");
