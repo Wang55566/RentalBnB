@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import {deleteASpot, readSpotsByUser} from '../../store/spot';

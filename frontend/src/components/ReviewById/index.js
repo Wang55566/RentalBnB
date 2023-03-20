@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 
 import { readReviews } from "../../store/review";
 
-import { readOneSpot, readSpots } from '../../store/spot';
-
 import './review.css';
 
 import OpenModalButton from '../OpenModalButton';

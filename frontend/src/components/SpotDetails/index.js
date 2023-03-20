@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
 
-import {readSpots, readOneSpot} from '../../store/spot';
+import {readOneSpot} from '../../store/spot';
 
 import OpenModalButton from '../OpenModalButton';
 
@@ -11,19 +11,12 @@ import ReserveMessageModal from '../ReserveMessageModal';
 
 import './SpotDetails.css';
 
-import PostReview from '../PostReview';
-
-import { readReviews } from "../../store/review";
-
 const SpotDetails = () => {
 
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const spot = useSelector(state => state.spot.singleSpot);
-  const review = useSelector(state => state.reviews);
-  const currentUser = useSelector(state => state.session.user);
-
 
   useEffect(() => {
      dispatch(readOneSpot(id));

@@ -9,7 +9,6 @@ const DeleteReviewModal = () => {
   const dispatch = useDispatch();
 
   const userReview = useSelector(state => state.user);
-  // console.log(userReview)
 
   const {closeModal} = useModal();
 

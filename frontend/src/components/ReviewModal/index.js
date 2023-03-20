@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useModal } from "../../context/Modal";
 import { useDispatch , useSelector } from 'react-redux';
 import {createReview, readReviews} from '../../store/review'
-import { useHistory } from 'react-router-dom';
 
 import './ReviewForm.css';
 import { readOneSpot } from '../../store/spot';
@@ -15,8 +14,6 @@ const ReviewModal = () => {
   const {closeModal} = useModal();
 
   const spot = useSelector(state => state.spot.singleSpot)
-
-  const history = useHistory();
 
   useEffect(() => {
   },[stars])
@@ -35,10 +32,6 @@ const ReviewModal = () => {
     closeModal();
 
   }
-
-  // const onClickStarFive = () => {
-
-  // }
 
   return (
     <div className='post-review'>

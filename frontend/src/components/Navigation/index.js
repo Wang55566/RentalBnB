@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
-import { useState, useEffect } from "react";
+import { useSelector} from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
@@ -15,7 +14,7 @@ function Navigation({ isLoaded }){
           <NavLink to="/"><i className="fas fa-camera fa-8x" id='icon'></i></NavLink>
         </li>
         <li>
-          <NavLink to="/spots/new" className='create-new-spot'>Create A New Spot</NavLink>
+          {sessionUser ? <NavLink to="/spots/new" className='create-new-spot'>Create A New Spot</NavLink> : ""}
         </li>
       {isLoaded && (
         <li className='profile'>

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {readSpots, readOneSpot, readSpotsByUser} from '../../store/spot';
+import { readOneSpot, readSpotsByUser} from '../../store/spot';
 
-import { NavLink, Route, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import OpenModalButton from '../OpenModalButton';
 
