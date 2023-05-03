@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,8 +30,6 @@ const ReviewsByReviewId = () => {
   const sorted = Object.values(spotReviews?.reviews).sort((a,b) => Date.parse(b?.createdAt) - Date.parse(a?.createdAt) )
 
 
-  //
-
   const checkReview = Object.values(spotReviews.reviews).some( (review) =>
     review?.User?.id === currentUser?.id
   )
@@ -61,7 +59,6 @@ const ReviewsByReviewId = () => {
         <div>
           <div className='post-review-button'>{!currentUser || currentUser?.id === spot.Owner?.id || checkReview === true ? "" : <PostReview/>}</div>
         </div>
-
       </div>
 
       <div className='review-content'>
@@ -85,7 +82,6 @@ const ReviewsByReviewId = () => {
               modalComponent={<DeleteReviewModal />}
             />
             </div> : <div></div>}
-
           </div>
         )}
       </div>

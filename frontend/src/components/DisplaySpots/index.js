@@ -15,10 +15,6 @@ const AllSpots = () => {
     return state.spot.allSpots
   })
 
-  const oneSpot = useSelector((state) => {
-    return state.spot.singleSpot;
-  })
-
   useEffect(() => {
     dispatch(readSpots());
   }, [dispatch]);

@@ -10,7 +10,6 @@ import ReviewsByReviewId from './components/ReviewById';
 import CreateSpotForm from './components/CreateSpotForm';
 import CurrentUserSpot from './components/ManageSpot';
 import EditSpotForm from './components/EditSpotForm';
-import PostReview from './components/PostReview'
 
 function App() {
   const dispatch = useDispatch();

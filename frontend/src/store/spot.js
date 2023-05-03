@@ -49,7 +49,7 @@ export const readOneSpot = (id) => async (dispatch) => {
 
   if(response.ok) {
     const spot = await response.json();
-    dispatch(loadOne(spot))
+    return dispatch(loadOne(spot))
   }
 }
 

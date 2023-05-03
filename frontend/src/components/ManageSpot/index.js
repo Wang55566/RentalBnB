@@ -16,13 +16,14 @@ const CurrentUserSpot = () => {
 
 const dispatch = useDispatch();
 
+const spotsByUser = useSelector((state) => {
+  return state.spot.allSpots
+})
+
 useEffect(() => {
   dispatch(readSpotsByUser())
 },[dispatch])
 
-const spotsByUser = useSelector((state) => {
-  return state.spot.allSpots
-})
 
 return (
   <>
@@ -46,7 +47,7 @@ return (
             <p className='price'>${spot.price} night</p>
         </div>
         <div className='update-delete-button'>
-            <NavLink className='update-botton' to={`/spots/${spot.id}/edit`}>Update</NavLink>
+            <NavLink className='update-botton' to={`/spots/${spot.id}/edit`} onButtonClick={() => dispatch(readOneSpot(spot.id))}>Update</NavLink>
             <div className='delete-botton'>
               <OpenModalButton
                 buttonText="Delete"

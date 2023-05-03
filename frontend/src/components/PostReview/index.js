@@ -12,8 +12,6 @@ import ReviewModal from "../ReviewModal";
 
 import {restoreUser} from '../../store/session';
 
-
-
 const PostReview = () => {
 
   const dispatch = useDispatch();
@@ -21,8 +19,6 @@ const PostReview = () => {
 
   const spot = useSelector(state => state.spot.singleSpot);
   const user = useSelector(state => state.session.user);
-
-
 
   useEffect(() => {
     dispatch(readOneSpot(id));

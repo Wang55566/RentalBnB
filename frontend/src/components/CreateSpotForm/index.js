@@ -99,20 +99,6 @@ const CreateSpotForm = () => {
 
     e.preventDefault();
 
-    // const err ={};
-    // const url = previewImage.split('.');
-
-    // if(country.length < 1) {err.country = "Country is required"};
-    // if(address.length < 1) {err.address = "Address is required"};
-    // if(city.length < 1) {err.city = "City is required"};
-    // if(state.length < 1) {err.state = "State is required"};
-    // if(description.length < 30) {err.description = "Description needs a minimum of 30 characters"};
-    // if(name.length < 1) {err.name = "Name is required"};
-    // if(price.length < 1) {err.price = "Price is required"};
-    // if(!['jpg', 'jpeg', 'png'].includes(url[url.length - 1])) {
-    //   err.previewImage = "Image URL needs to end in png or jpg (or jpeg)"
-    // }
-    // if(previewImage.length < 1) {err.previewImage = "Preview image is required"}
     if(Object.values(errors).length === 0) {
 
       const payload = {
