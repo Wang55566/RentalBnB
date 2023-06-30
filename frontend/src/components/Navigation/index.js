@@ -13,7 +13,7 @@ function Navigation({ isLoaded }){
     <div className='header'>
       <ul className='list'>
         <li className='logo'>
-          <NavLink to="/"><img src={sleepLogo} alt="Logo" style={{width:'200px', height:'150px'}}/></NavLink>
+          <NavLink to="/"><img src={sleepLogo} alt="Logo" style={{width:'100px', height:'75px'}}/></NavLink>
         </li>
         <li>
           {sessionUser ? <NavLink to="/spots/new" className='create-new-spot'>Create A New Spot</NavLink> : ""}
