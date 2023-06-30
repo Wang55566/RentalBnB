@@ -4,6 +4,8 @@ import { useSelector} from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
+import sleepLogo from '../../wallpaper.jpg';
+
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -11,7 +13,7 @@ function Navigation({ isLoaded }){
     <div className='header'>
       <ul className='list'>
         <li className='logo'>
-          <NavLink to="/"><i className="fas fa-camera fa-8x" id='icon'></i></NavLink>
+          <NavLink to="/"><img src={sleepLogo} alt="Logo" style={{width:'100px', height:'75px'}}/></NavLink>
         </li>
         <li>
           {sessionUser ? <NavLink to="/spots/new" className='create-new-spot'>Create A New Spot</NavLink> : ""}

@@ -20,13 +20,7 @@ const SpotDetails = () => {
 
   useEffect(() => {
      dispatch(readOneSpot(id));
-  //   dispatch(readReviews(spot.id));
   },[dispatch]);
-
-  // useEffect(() => {
-  //   console.log("spot:", spot);
-  //   console.log("review:", review);
-  // })
 
   return (
     <>
@@ -40,8 +34,6 @@ const SpotDetails = () => {
         {spot && Object.values(spot).length !== 0 && spot.SpotImages.map(img =>
         <img key={img.id} src= {img.url} alt='' width='600px' height='400px'/>
         )}
-        {/* {!spot.SpotImages? <img src= {spot.previewImage} alt='' width='600px' height='400px'/> : ""} */}
-        {/* {spot.previewImage ? <img className="image_placeholder" src= {spot.previewImage} alt=''/> : <img className="image_placeholder"/>} */}
         </div>
         <div className='image2-image3'>
           <div className='image2'><img className="image_placeholder"/></div>
@@ -82,11 +74,6 @@ const SpotDetails = () => {
         </div>
       </div>
     </div>
-           <div>
-            {/* <div className='post-review-button'>
-              <PostReview/>
-            </div> */}
-          </div>
     </>
   )
 }

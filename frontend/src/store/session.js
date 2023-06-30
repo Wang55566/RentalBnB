@@ -30,8 +30,6 @@ export const login = (user) => async (dispatch) => {
     dispatch(setUser(data.user));
     return response;
   }
-
-  
 };
 
 export const logout = () => async (dispatch) => {

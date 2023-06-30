@@ -27,9 +27,6 @@ const DeleteReviewModal = () => {
     closeModal();
   }
 
-
-
-
   return (
     <div className='delete-review-box'>
       <h1>

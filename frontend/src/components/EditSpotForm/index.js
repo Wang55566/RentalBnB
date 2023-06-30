@@ -35,7 +35,7 @@ const EditSpotForm = () => {
     if(name.length < 1) {err.name = "Name is required"};
     if(price.length < 1) {err.price = "Price is required"};
     setErrors(err);
-  },[country, address, city, state, description, name, price]);
+  },[country, address, city, state, description, name, price, id, dispatch]);
 
 
   const updateCountry = (e) => setCountry(e.target.value);
@@ -48,16 +48,6 @@ const EditSpotForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    // const err = {}
-
-    // if(country.length < 1) {err.country = "Country is required"};
-    // if(address.length < 1) {err.address = "Address is required"};
-    // if(city.length < 1) {err.city = "City is required"};
-    // if(state.length < 1) {err.state = "State is required"};
-    // if(description.length < 30) {err.description = "Description needs a minimum of 30 characters"};
-    // if(name.length < 1) {err.name = "Name is required"};
-    // if(price.length < 1) {err.price = "Price is required"};
 
     if(Object.values(errors).length === 0) {
 
